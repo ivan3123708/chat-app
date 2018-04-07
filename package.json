@@ -4,11 +4,13 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "start:dev-full": "concurrently \"nodemon server.js\" \"npm run start:dev --prefix client\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "concurrently": "^3.5.1",
     "express": "^4.16.3",
     "socket.io": "^2.1.0"
   }

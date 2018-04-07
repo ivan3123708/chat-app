@@ -1,4 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ChatApp from './components/ChatApp';
 
-ReactDOM.render(<h1>CAO SVIMA</h1>, document.getElementById('app_root'));
+ReactDOM.render(<ChatApp/>, document.getElementById('app_root'));
