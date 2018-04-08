@@ -1,0 +1,27 @@
+.message {
+  display: flex;
+  max-width: 500px;
+  min-height: 100px;
+}
+
+.message img {
+  max-height: 50px;
+  margin: 5px;
+}
+
+.message-content {
+  margin: 5px;
+  padding: 10px;
+  background: #fff;
+  border-radius: 20px;
+}
+
+.message-content .sender {
+  margin: 0 0 15px 0;
+  color: $violet;
+  font-weight: bold;
+}
+
+.message-content .text {
+  margin: 5px 0;
+}

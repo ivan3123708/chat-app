@@ -15,7 +15,7 @@ io.on('connection', (socket) => {
 
   socket.on('say', (something) => {
     console.log('User said: ', something);
-    io.sockets.emit('somethingSaid', something);
+    io.emit('somethingSaid', something);
   });
 
   socket.on('disconnect', () => {

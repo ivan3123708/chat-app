@@ -1,5 +1,7 @@
 import React from 'react';
 import socketIOClient from 'socket.io-client';
+import Message from './Message';
+import Send from 'react-icons/lib/md/send';
 
 const socket = socketIOClient('http://localhost:3000');
 
@@ -20,10 +22,19 @@ class ChatApp extends React.Component {
     });
     
     return (
-      <div>
-        <h1>{this.state.message}</h1>
-        <button onClick={() => this.say('Hello World')}>Say Hello World</button>
-        <button onClick={() => this.say('Goodbye World')}>Say Goodbye World</button>
+      <div className="chat-app">
+        <div className="sidebar"></div>
+        <div className="chat-content">
+          <div className="messages">
+            <Message />
+          </div>
+          <div className="chat-input">
+            <form>
+              <input type="text" placeholder="Write message..." autofocus/>
+              <button><Send color="#8F5DB7" size="24px" /></button>
+            </form>
+          </div>
+        </div>
       </div>
     );
   }

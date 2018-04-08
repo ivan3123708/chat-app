@@ -1,0 +1,43 @@
+.chat-app {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 20%;
+  background: $violet;
+}
+
+.chat-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 80%;
+  background: $grey;
+}
+
+.messages {
+  padding: 20px;
+  background: $grey;
+}
+
+.chat-input {
+  width: auto;
+  margin: 10px;
+  padding: 0 20px;
+  background: #fff;
+  border-radius: 50px;
+}
+
+.chat-input form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.chat-input input {
+  width: 90%;
+  padding: 10px;
+  border: none;
+  color: $navy;
+  font-size: 20px;
+}

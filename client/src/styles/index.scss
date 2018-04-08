@@ -1,0 +1,21 @@
+$violet: #8F5DB7;
+$navy: #37474F;
+$grey: #CFD8DC;
+
+*:focus {
+    outline: none;
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto Slab', serif;
+}
+
+button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+@import './ChatApp.scss';
+@import './Message.scss';
