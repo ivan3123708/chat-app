@@ -1,5 +1,6 @@
 import React from 'react';
 import { serverMessageListener, clientMessageEmitter } from '../socketEvents';
+import LoginModal from './LoginModal';
 import Message from './Message';
 import Send from 'react-icons/lib/md/send';
 
@@ -9,6 +10,7 @@ class ChatApp extends React.Component {
     super();
 
     this.state = {
+      loginModalOpen: true,
       messages: []
     };
 
@@ -29,6 +31,7 @@ class ChatApp extends React.Component {
   render() {    
     return (
       <div className="chat-app">
+        <LoginModal isOpen={this.state.loginModalOpen} />
         <div className="sidebar"></div>
         <div className="chat-content">
           <div className="messages">
@@ -38,7 +41,7 @@ class ChatApp extends React.Component {
           </div>
           <div className="chat-input">
             <form onSubmit={(e) => this.sendMessage(e)}>
-              <input type="text" name="text" placeholder="Write message..." autofocus/>
+              <input type="text" name="text" placeholder="Write message..." autoFocus/>
               <button><Send color="#8F5DB7" size="24px" /></button>
             </form>
           </div>

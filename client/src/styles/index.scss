@@ -1,6 +1,8 @@
 $violet: #8F5DB7;
-$navy: #37474F;
+$violet-light: #ab5fe9;
+$navy: #576366;
 $grey: #CFD8DC;
+$violet-gradient: linear-gradient(to bottom right, $violet 0%, $violet 55%, $violet-light 100%);
 
 *:focus {
     outline: none;
@@ -8,7 +10,7 @@ $grey: #CFD8DC;
 
 body {
   margin: 0;
-  font-family: 'Roboto Slab', serif;
+  font-family: 'Muli', sans-serif;
 }
 
 button {
@@ -17,5 +19,6 @@ button {
   cursor: pointer;
 }
 
-@import './ChatApp.scss';
-@import './Message.scss';
+@import './components/ChatApp.scss';
+@import './components/Message.scss';
+@import './components/LoginModal.scss';
