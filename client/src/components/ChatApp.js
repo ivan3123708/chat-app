@@ -1,36 +1,44 @@
 import React from 'react';
-import socketIOClient from 'socket.io-client';
+import { serverMessageListener, clientMessageEmitter } from '../socketEvents';
 import Message from './Message';
 import Send from 'react-icons/lib/md/send';
 
-const socket = socketIOClient('http://localhost:3000');
-
 class ChatApp extends React.Component {
 
-  state = {
-    message: 'Nothing'
-  }
+  constructor() {
+    super();
 
-  say = (something) => {
-    socket.emit('say', something);
-  }
+    this.state = {
+      messages: []
+    };
 
-  render() {
-
-    socket.on('somethingSaid', (something) => {
-      this.setState({ message: something })
+    serverMessageListener((text) => {
+      this.setState((prevState) => ({ messages: prevState.messages.concat(text) }))
     });
+  }
+
+  sendMessage = (e) => {
+    e.preventDefault();
+
+    const text = e.target.elements.text.value;
+    e.target.elements.text.value = '';
     
+    clientMessageEmitter(text);
+  }
+
+  render() {    
     return (
       <div className="chat-app">
         <div className="sidebar"></div>
         <div className="chat-content">
           <div className="messages">
-            <Message />
+            {this.state.messages.map((message) => {
+              return <Message text={message} />
+            })}
           </div>
           <div className="chat-input">
-            <form>
-              <input type="text" placeholder="Write message..." autofocus/>
+            <form onSubmit={(e) => this.sendMessage(e)}>
+              <input type="text" name="text" placeholder="Write message..." autofocus/>
               <button><Send color="#8F5DB7" size="24px" /></button>
             </form>
           </div>

@@ -13,9 +13,9 @@ app.use(express.static(publicPath));
 io.on('connection', (socket) => {
   console.log('User connected');
 
-  socket.on('say', (something) => {
-    console.log('User said: ', something);
-    io.emit('somethingSaid', something);
+  socket.on('clientMessage', (text) => {
+    console.log('User sent: ', text);
+    io.emit('serverMessage', text);
   });
 
   socket.on('disconnect', () => {
