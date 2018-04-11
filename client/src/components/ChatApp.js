@@ -11,12 +11,20 @@ class ChatApp extends React.Component {
 
     this.state = {
       loginModalOpen: true,
-      messages: []
+      messages: [{
+        sender: 'Miroslav',
+        text: 'Sta radite? Ja sam sada dosao kuci...',
+        time: '13:03'
+      }]
     };
 
-    serverMessageListener((text) => {
-      this.setState((prevState) => ({ messages: prevState.messages.concat(text) }))
+    serverMessageListener((message) => {
+      this.setState((prevState) => ({ messages: prevState.messages.concat(message) }))
     });
+  }
+
+  closeLoginModal = () => {
+    this.setState({ loginModalOpen: false });
   }
 
   sendMessage = (e) => {
@@ -31,12 +39,12 @@ class ChatApp extends React.Component {
   render() {    
     return (
       <div className="chat-app">
-        <LoginModal isOpen={this.state.loginModalOpen} />
+        <LoginModal isOpen={this.state.loginModalOpen} onRequestClose={this.closeLoginModal} />
         <div className="sidebar"></div>
         <div className="chat-content">
           <div className="messages">
             {this.state.messages.map((message) => {
-              return <Message text={message} />
+              return <Message message={message} />
             })}
           </div>
           <div className="chat-input">

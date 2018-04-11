@@ -19,9 +19,18 @@
 .message-content .sender {
   margin: 0 0 15px 0;
   color: $violet;
+  font-size: 14px;
   font-weight: bold;
 }
 
 .message-content .text {
   margin: 5px 0;
+}
+
+.message-content .time {
+  float: right;
+  margin: 10px 5px 0 5px;
+  color: $grey-text;
+  font-size: 14px;
+  font-style: italic;
 }

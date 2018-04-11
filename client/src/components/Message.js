@@ -4,8 +4,9 @@ const Message = (props) => (
   <div className="message">
     <img src={'/img/default_avatar.png'}/>
     <div className="message-content">
-      <p className="sender">Alexander</p>
-      {props.text || <p className="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pharetra, sem in gravida dapibus, nibh odio posuere dui, vitae mollis.</p>}
+      <p className="sender">{props.message.sender}</p>
+      <p className="text">{props.message.text}</p>
+      <p className="time">{props.message.time}</p>
     </div>
   </div>
 );

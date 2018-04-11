@@ -2,20 +2,35 @@ const http = require('http');
 const path = require('path');
 const express = require('express');
 const socketIO = require('socket.io');
+const moment = require('moment');
+const { Users } = require('./utils/Users');
 
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
 const publicPath = path.join(__dirname, 'client', 'public');
 
+const users = new Users();
+
 app.use(express.static(publicPath));
 
 io.on('connection', (socket) => {
   console.log('User connected');
 
+  socket.on('userJoin', (nickname, callback) => {
+    users.addUser(socket.id, nickname);
+    console.log(users);
+    callback();
+  })
+
   socket.on('clientMessage', (text) => {
-    console.log('User sent: ', text);
-    io.emit('serverMessage', text);
+    const message = {
+      sender: users.getUser(socket.id).nickname,
+      text: text,
+      time: moment().format('HH:mm')
+    }
+    io.emit('serverMessage', message);
+    console.log(`${message.sender} sent: ${text}`);
   });
 
   socket.on('disconnect', () => {
