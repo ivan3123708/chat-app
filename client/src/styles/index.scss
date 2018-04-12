@@ -1,9 +1,11 @@
 $violet: #8F5DB7;
 $violet-light: #ab5fe9;
+$violet-shadow: #56386e;
 $navy: #576366;
 $grey: #CFD8DC;
+$grey-dark: #a8a8a8;
 $grey-text: #949494;
-$violet-gradient: linear-gradient(to bottom right, $violet 0%, $violet 55%, $violet-light 100%);
+$violet-gradient: linear-gradient(to bottom right, $violet 0%, $violet 45%, $violet-light 100%);
 
 *:focus {
     outline: none;

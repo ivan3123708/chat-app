@@ -3,23 +3,45 @@
   background: $violet-gradient;
 }
 
-.sidebar-users {
-  margin: auto 10px;
+.sidebar .public-chats {
+  background: $violet;
 }
 
-.sidebar-user {
+.sidebar .panel {
   display: flex;
-  height: 60px;
-  border-bottom: 1px solid #fff;
+  justify-content: space-between;
+  height: 40px;
+  margin-bottom: 5px;
+  color: #fff;
+  box-shadow: 0 5px 20px $violet-shadow;
+  border: 1px solid transparent;
 }
 
-.sidebar-user img {
-  max-height: 50px;
+.sidebar .panel p {
+  margin: 10px;
+  font-weight: bold;
+}
+
+.sidebar .public-chats .panel .add {
+  margin: auto 10px;
+  color: #fff;
+}
+
+.sidebar .list {
+  display: flex;
+  height: auto;
+  margin: auto 10px;
+  border-bottom: 1px solid $violet-light;
+}
+
+.sidebar .list img {
+  max-height: 40px;
   margin: 5px;
+  border-radius: 50%;
 }
 
-.sidebar-user p {
-  margin-left: 10px;
+.sidebar .list p {
+  margin: auto 10px;
   color: #fff;
   font-size: 18px;
 }
