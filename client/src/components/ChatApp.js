@@ -1,6 +1,7 @@
 import React from 'react';
-import { serverMessageListener, clientMessageEmitter } from '../socketEvents';
+import { usersUpdateListener, serverMessageListener, clientMessageEmitter } from '../socketEvents';
 import LoginModal from './LoginModal';
+import Sidebar from './Sidebar';
 import Message from './Message';
 import Send from 'react-icons/lib/md/send';
 
@@ -11,14 +12,18 @@ class ChatApp extends React.Component {
 
     this.state = {
       loginModalOpen: true,
-      messages: [{
-        sender: 'Miroslav',
-        text: 'Sta radite? Ja sam sada dosao kuci...',
-        time: '13:03'
-      }]
+      users: [],
+      messages: []
     };
 
+    usersUpdateListener((users) => {
+      this.setState({ users: users });
+    });
+
     serverMessageListener((message) => {
+      if (this.state.messages.length && message.sender === this.state.messages[this.state.messages.length - 1].sender) {
+        message.consecutive = true;
+      };
       this.setState((prevState) => ({ messages: prevState.messages.concat(message) }))
     });
   }
@@ -40,7 +45,7 @@ class ChatApp extends React.Component {
     return (
       <div className="chat-app">
         <LoginModal isOpen={this.state.loginModalOpen} onRequestClose={this.closeLoginModal} />
-        <div className="sidebar"></div>
+        <Sidebar users={this.state.users} />
         <div className="chat-content">
           <div className="messages">
             {this.state.messages.map((message) => {

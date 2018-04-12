@@ -12,12 +12,20 @@ const userJoinEmitter = (nickname) => {
   });
 };
 
+const usersUpdateListener = (callback) => {
+  socket.on('updateUsers', (users) => {
+    callback(users);
+  });
+};
+
 const serverMessageListener = (callback) => {
-  socket.on('serverMessage', (message) => callback(message));
+  socket.on('serverMessage', (message) => {
+    callback(message);
+  });
 };
 
 const clientMessageEmitter = (text) => {
   socket.emit('clientMessage', text);
 };
 
-export { userJoinEmitter, serverMessageListener, clientMessageEmitter };
+export { userJoinEmitter, usersUpdateListener, serverMessageListener, clientMessageEmitter };

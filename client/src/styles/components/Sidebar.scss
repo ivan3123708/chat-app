@@ -1,0 +1,25 @@
+.sidebar {
+  width: 20%;
+  background: $violet-gradient;
+}
+
+.sidebar-users {
+  margin: auto 10px;
+}
+
+.sidebar-user {
+  display: flex;
+  height: 60px;
+  border-bottom: 1px solid #fff;
+}
+
+.sidebar-user img {
+  max-height: 50px;
+  margin: 5px;
+}
+
+.sidebar-user p {
+  margin-left: 10px;
+  color: #fff;
+  font-size: 18px;
+}

@@ -19,9 +19,9 @@ io.on('connection', (socket) => {
 
   socket.on('userJoin', (nickname, callback) => {
     users.addUser(socket.id, nickname);
-    console.log(users);
+    io.emit('updateUsers', users.getUsers());
     callback();
-  })
+  });
 
   socket.on('clientMessage', (text) => {
     const message = {

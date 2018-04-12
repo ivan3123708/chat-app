@@ -3,6 +3,10 @@ class Users {
     this.users = [];
   }
 
+  getUsers() {
+    return this.users.map((user) => user.nickname);
+  }
+
   addUser(id, nickname) {
     const user = {
       id: id,

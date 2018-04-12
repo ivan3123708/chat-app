@@ -1,7 +1,7 @@
 .message {
   display: flex;
   max-width: 500px;
-  min-height: 100px;
+  height: auto;
 }
 
 .message img {
@@ -9,27 +9,33 @@
   margin: 5px;
 }
 
-.message-content {
+.message-content,.message-content-consecutive {
+  min-width: 100px;
+  height: auto;
   margin: 5px;
   padding: 10px;
   background: #fff;
   border-radius: 20px;
 }
 
+.message-content-consecutive {
+  margin-left: 65px;
+}
+
 .message-content .sender {
-  margin: 0 0 15px 0;
+  margin: 0 0 12px 0;
   color: $violet;
   font-size: 14px;
   font-weight: bold;
 }
 
-.message-content .text {
-  margin: 5px 0;
+.message-content .text,.message-content-consecutive .text {
+  margin: 0;
 }
 
-.message-content .time {
+.message-content .time,.message-content-consecutive .time {
   float: right;
-  margin: 10px 5px 0 5px;
+  margin: 7px 0 0 0;
   color: $grey-text;
   font-size: 14px;
   font-style: italic;
