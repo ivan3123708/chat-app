@@ -1,5 +1,5 @@
 import React from 'react';
-import { usersUpdateListener, serverMessageListener, clientMessageEmitter } from '../socketEvents';
+import { setUserListener, usersUpdateListener, updateRoomsListener, serverMessageListener, clientMessageEmitter } from '../socketEvents';
 import LoginModal from './LoginModal';
 import Sidebar from './Sidebar';
 import Message from './Message';
@@ -11,10 +11,20 @@ class ChatApp extends React.Component {
     super();
 
     this.state = {
-      loginModalOpen: true,
+      user: null,
       users: [],
-      messages: []
+      rooms: [],
+      messages: [],
+      loginModalOpen: true
     };
+
+    setUserListener((user) => {
+      this.setState({ user: user });
+    });
+
+    updateRoomsListener((rooms) => {
+      this.setState({ rooms: rooms });
+    });
 
     usersUpdateListener((users) => {
       this.setState({ users: users });
@@ -45,7 +55,11 @@ class ChatApp extends React.Component {
     return (
       <div className="chat-app">
         <LoginModal isOpen={this.state.loginModalOpen} onRequestClose={this.closeLoginModal} />
-        <Sidebar users={this.state.users} />
+        <Sidebar 
+          user={this.state.user}
+          users={this.state.users} 
+          rooms={this.state.rooms} 
+        />
         <div className="chat-content">
           <div className="messages">
             {this.state.messages.map((message) => {
@@ -54,7 +68,7 @@ class ChatApp extends React.Component {
           </div>
           <div className="chat-input">
             <form onSubmit={(e) => this.sendMessage(e)}>
-              <input type="text" name="text" placeholder="Write message..." autoFocus/>
+              <input type="text" name="text" placeholder="Write message..." spellCheck="false" autoFocus/>
               <button><Send color="#8F5DB7" size="24px" /></button>
             </form>
           </div>

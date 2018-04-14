@@ -2,6 +2,12 @@ import socketIOClient from 'socket.io-client';
 
 const socket = socketIOClient('http://localhost:3000');
 
+const setUserListener = (callback) => {
+  socket.on('setUser', (user) => {
+    callback(user);
+  });
+};
+
 const userJoinEmitter = (nickname) => {
   socket.emit('userJoin', nickname, (err) => {
     if (err) {
@@ -18,6 +24,16 @@ const usersUpdateListener = (callback) => {
   });
 };
 
+const joinRoomEmitter = (room) => {
+  socket.emit('joinRoom', room);
+};
+
+const updateRoomsListener = (callback) => {
+  socket.on('updateRooms', (rooms) => {
+    callback(rooms)
+  });
+};
+
 const serverMessageListener = (callback) => {
   socket.on('serverMessage', (message) => {
     callback(message);
@@ -28,4 +44,4 @@ const clientMessageEmitter = (text) => {
   socket.emit('clientMessage', text);
 };
 
-export { userJoinEmitter, usersUpdateListener, serverMessageListener, clientMessageEmitter };
+export { setUserListener, userJoinEmitter, usersUpdateListener, joinRoomEmitter, updateRoomsListener, serverMessageListener, clientMessageEmitter };

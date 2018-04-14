@@ -4,6 +4,7 @@ const express = require('express');
 const socketIO = require('socket.io');
 const moment = require('moment');
 const { Users } = require('./utils/Users');
+const { Rooms } = require('./utils/Rooms');
 
 const app = express();
 const server = http.createServer(app);
@@ -11,6 +12,7 @@ const io = socketIO(server);
 const publicPath = path.join(__dirname, 'client', 'public');
 
 const users = new Users();
+const rooms = new Rooms();
 
 app.use(express.static(publicPath));
 
@@ -19,8 +21,26 @@ io.on('connection', (socket) => {
 
   socket.on('userJoin', (nickname, callback) => {
     users.addUser(socket.id, nickname);
+    socket.emit('setUser', users.getUser(socket.id));
     io.emit('updateUsers', users.getUsers());
+
+    socket.join('Home Chat');
+    socket.room = 'Home Chat';
+    
+    rooms.addRoom('Home Chat');
+    io.emit('updateRooms', rooms.getRooms());
+    
     callback();
+  });
+
+  socket.on('joinRoom', (newRoom) => {
+    socket.leave(socket.room);
+
+    socket.join(newRoom);
+    socket.room = newRoom;
+
+    rooms.addRoom(newRoom);
+    io.emit('updateRooms', rooms.getRooms());
   });
 
   socket.on('clientMessage', (text) => {
@@ -29,11 +49,14 @@ io.on('connection', (socket) => {
       text: text,
       time: moment().format('HH:mm')
     }
-    io.emit('serverMessage', message);
-    console.log(`${message.sender} sent: ${text}`);
+    io.to(socket.room).emit('serverMessage', message);
   });
 
   socket.on('disconnect', () => {
+    users.removeUser(socket.id);
+    io.emit('updateUsers', users.getUsers());
+
+    socket.leave(socket.room);
     console.log('User disconnected');
   });
 });

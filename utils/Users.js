@@ -17,9 +17,13 @@ class Users {
 
     return user;
   }
-
+  
   getUser(id) {
     return this.users.filter((user) => user.id === id)[0];
+  }
+
+  removeUser(id) {
+    this.users.filter((user) => user.id !== id);
   }
 };
 
