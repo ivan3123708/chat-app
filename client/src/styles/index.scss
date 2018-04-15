@@ -1,11 +1,11 @@
 $violet: #8F5DB7;
 $violet-light: #ab5fe9;
 $violet-shadow: #56386e;
-$navy: #576366;
+$violet-gradient: linear-gradient(to bottom right, $violet 0%, $violet 40%, $violet-light 100%);
 $grey: #CFD8DC;
 $grey-dark: #a8a8a8;
 $grey-text: #949494;
-$violet-gradient: linear-gradient(to bottom right, $violet 0%, $violet 45%, $violet-light 100%);
+$blue-light: #a7d2e6;
 
 *:focus {
     outline: none;
@@ -14,6 +14,22 @@ $violet-gradient: linear-gradient(to bottom right, $violet 0%, $violet 45%, $vio
 body {
   margin: 0;
   font-family: 'Muli', sans-serif;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #bc79f3; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: $violet; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #7d52a0; 
 }
 
 button {
@@ -25,4 +41,5 @@ button {
 @import './components/ChatApp.scss';
 @import './components/Sidebar.scss';
 @import './components/Message.scss';
+@import './components/MyMessage.scss';
 @import './components/LoginModal.scss';

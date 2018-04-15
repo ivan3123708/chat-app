@@ -8,12 +8,27 @@
   flex-direction: column;
   justify-content: space-between;
   width: 80%;
+  height: 100vh;
+  max-height: 100vh;
   background: $grey;
 }
 
+.topbar {
+  height: 40px;
+  background: $violet-gradient;
+}
+
+.topbar p {
+  margin: 10px auto;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+}
+
 .messages {
+  height: 83%;
   padding: 20px;
-  background: $grey;
+  overflow: auto;
 }
 
 .chat-input {
@@ -35,9 +50,8 @@
 .chat-input input {
   width: 90%;
   padding: 7px 15px;
-  border: none;
-  color: $navy;
   font-size: 16px;
   font-family: 'Muli', sans-serif;
+  border: none;
   border-radius: 10px;
 }

@@ -3,8 +3,34 @@
   background: $violet-gradient;
 }
 
-.sidebar .public-chats {
-  background: $violet;
+.sidebar .profile {
+  display: flex;
+}
+
+.sidebar .profile img {
+  max-height: 80px;
+  margin: 10px;
+  border-radius: 50%;
+  box-shadow: 0 5px 20px $violet-shadow;
+}
+
+.sidebar .profile p {
+  margin: 15px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.sidebar .profile button {
+  margin-left: 15px;
+  padding: 5px 10px 5px 15px;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 3px;
+}
+
+.sidebar .profile .edit {
+  margin: 0 3px 0 10px;
 }
 
 .sidebar .panel {
@@ -15,6 +41,11 @@
   color: #fff;
   box-shadow: 0 5px 20px $violet-shadow;
   border: 1px solid transparent;
+}
+
+.sidebar .public-chats-list,.sidebar .users-list {
+  height: 250px;
+  overflow: auto;
 }
 
 .sidebar .panel p {

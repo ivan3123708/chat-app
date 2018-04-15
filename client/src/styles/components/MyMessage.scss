@@ -1,0 +1,45 @@
+.my-message {
+  display: flex;
+  max-width: 500px;
+  height: auto;
+  margin-left: auto;
+  justify-content: flex-end;
+}
+
+.my-message img {
+  max-height: 50px;
+  margin: 5px;
+}
+
+.my-message .message-content,.my-message .message-content-consecutive {
+  min-width: 100px;
+  height: auto;
+  margin: 5px;
+  padding: 5px 10px;
+  text-align: right;
+  background: $blue-light;
+  border-radius: 10px;
+}
+
+.my-message .message-content-consecutive {
+  margin-right: 65px;
+}
+
+.my-message-content .sender {
+  margin: 0 0 12px 0;
+  color: $violet;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.message-content .text,.message-content-consecutive .text {
+  margin: 0;
+}
+
+.my-message .message-content .time,.my-message .message-content-consecutive .time {
+  float: left;
+  margin: 7px 0 0 0;
+  color: $grey-text;
+  font-size: 14px;
+  font-style: italic;
+}
