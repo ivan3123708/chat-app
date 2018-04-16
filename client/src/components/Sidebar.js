@@ -41,26 +41,30 @@ class Sidebar extends React.Component {
               <Add className="add" size="20px" />
             </button>
           </div>
-          {this.props.rooms.map((room) => (
-            <div className="list">
-              <img src={'/img/home.png'} />
-              <p>{room}</p>
-              <button onClick={() => this.joinRoom(room)} title="Join this room">
-                <Join className="join" size="20px" />
-              </button>
-            </div>
-          ))}
+          <div className="public-chats-list">
+            {this.props.rooms.map((room) => (
+              <div className="list">
+                <img src={room === 'Home Chat' ? '/img/home_chat.png' : '/img/public_chat.png'} />
+                <p>{room}</p>
+                <button onClick={() => this.joinRoom(room)} title="Join this room">
+                  <Join className="join" size="20px" />
+                </button>
+              </div>
+            ))}
+          </div>
         </div>
         <div className="users">
           <div className="panel">
             <p>Users Online</p>
           </div>
-          {this.props.users.map((user) => (
-            <div className="list">
-              <img src={'/img/default_avatar.png'} />
-              <p>{user}</p>
-            </div>
-          ))}
+          <div className="users-list">
+            {this.props.users.map((user) => (
+              <div className="list">
+                <img src={'/img/default_avatar.png'} />
+                <p>{user}</p>
+              </div>
+            ))}
+          </div>
         </div>
         <CreateRoomModal isOpen={this.state.createRoomModalOpen} onRequestClose={this.toggleModal}/>
       </div>

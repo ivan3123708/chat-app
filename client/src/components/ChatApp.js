@@ -1,8 +1,14 @@
 import React from 'react';
-import { setUserListener, usersUpdateListener, updateRoomsListener, serverMessageListener, clientMessageEmitter } from '../socketEvents';
+import { setUserListener,
+         usersUpdateListener,
+         setRoomListener,
+         updateRoomsListener,
+         serverMessageListener,
+         clientMessageEmitter } from '../socketEvents';
 import LoginModal from './LoginModal';
 import Sidebar from './Sidebar';
 import Message from './Message';
+import MyMessage from './MyMessage';
 import Send from 'react-icons/lib/md/send';
 
 class ChatApp extends React.Component {
@@ -13,6 +19,7 @@ class ChatApp extends React.Component {
     this.state = {
       user: null,
       users: [],
+      room: null,
       rooms: [],
       messages: [],
       loginModalOpen: true
@@ -22,19 +29,23 @@ class ChatApp extends React.Component {
       this.setState({ user: user });
     });
 
-    updateRoomsListener((rooms) => {
-      this.setState({ rooms: rooms });
-    });
-
     usersUpdateListener((users) => {
       this.setState({ users: users });
+    });
+
+    setRoomListener((room) => {
+      this.setState({ room: room });
+    });
+
+    updateRoomsListener((rooms) => {
+      this.setState({ rooms: rooms });
     });
 
     serverMessageListener((message) => {
       if (this.state.messages.length && message.sender === this.state.messages[this.state.messages.length - 1].sender) {
         message.consecutive = true;
       };
-      this.setState((prevState) => ({ messages: prevState.messages.concat(message) }))
+      this.setState((prevState) => ({ messages: prevState.messages.concat(message) }));
     });
   }
 
@@ -61,9 +72,16 @@ class ChatApp extends React.Component {
           rooms={this.state.rooms} 
         />
         <div className="chat-content">
+          <div className="topbar">
+            <p>{this.state.room}</p>
+          </div>
           <div className="messages">
             {this.state.messages.map((message) => {
-              return <Message message={message} />
+              if (message.sender === this.state.user.nickname) {
+                return <MyMessage message={message} />
+              } else {
+                return <Message message={message} />
+              }
             })}
           </div>
           <div className="chat-input">

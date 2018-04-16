@@ -15,12 +15,13 @@
 
 .topbar {
   height: 40px;
-  background: $violet-gradient;
+  background: #fff;
+  box-shadow: 0 1px 10px $grey-dark;
 }
 
 .topbar p {
   margin: 10px auto;
-  color: #fff;
+  color: $violet;
   font-weight: bold;
   text-align: center;
 }

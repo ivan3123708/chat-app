@@ -12,10 +12,6 @@ class Rooms {
       this.rooms.push(room);
     }
   }
-
-  // getUser(id) {
-  //   return this.users.filter((user) => user.id === id)[0];
-  // }
 };
 
 module.exports = { Rooms };

@@ -28,6 +28,7 @@ io.on('connection', (socket) => {
     socket.room = 'Home Chat';
     
     rooms.addRoom('Home Chat');
+    socket.emit('setRoom', socket.room);
     io.emit('updateRooms', rooms.getRooms());
     
     callback();
@@ -40,6 +41,7 @@ io.on('connection', (socket) => {
     socket.room = newRoom;
 
     rooms.addRoom(newRoom);
+    socket.emit('setRoom', socket.room);
     io.emit('updateRooms', rooms.getRooms());
   });
 
