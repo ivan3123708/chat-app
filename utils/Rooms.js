@@ -1,16 +1,34 @@
 class Rooms {
   constructor() {
-    this.rooms = [];
+    this.rooms = [
+      {
+        name: 'Home Chat',
+        users: [],
+        messages: []
+      }
+    ];
   }
 
   getRooms() {
     return this.rooms;
   }
 
-  addRoom(room) {
-    if (this.rooms.indexOf(room) < 0) {
-      this.rooms.push(room);
+  addRoom(roomName) {
+    if (!this.rooms.find((room) => room.name === roomName)) {
+      this.rooms.push({
+        name: roomName,
+        users: [],
+        messages: []
+      });
     }
+  }
+
+  getRoom(roomName) {
+    return this.rooms.find((room) => room.name === roomName);
+  }
+
+  addUser(userName, roomName) {
+    this.rooms.find((room) => room.name === roomName).users.push(userName);
   }
 };
 

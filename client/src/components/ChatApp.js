@@ -1,10 +1,5 @@
 import React from 'react';
-import { setUserListener,
-         usersUpdateListener,
-         setRoomListener,
-         updateRoomsListener,
-         serverMessageListener,
-         clientMessageEmitter } from '../socketEvents';
+import { socketOn, socketEmit } from '../socketEvents';
 import LoginModal from './LoginModal';
 import Sidebar from './Sidebar';
 import Message from './Message';
@@ -25,23 +20,23 @@ class ChatApp extends React.Component {
       loginModalOpen: true
     };
 
-    setUserListener((user) => {
+    socketOn.setUser((user) => {
       this.setState({ user: user });
     });
 
-    usersUpdateListener((users) => {
+    socketOn.updateUsers((users) => {
       this.setState({ users: users });
     });
 
-    setRoomListener((room) => {
+    socketOn.setRoom((room) => {
       this.setState({ room: room });
     });
 
-    updateRoomsListener((rooms) => {
+    socketOn.updateRooms((rooms) => {
       this.setState({ rooms: rooms });
     });
 
-    serverMessageListener((message) => {
+    socketOn.serverMessage((message) => {
       if (this.state.messages.length && message.sender === this.state.messages[this.state.messages.length - 1].sender) {
         message.consecutive = true;
       };
@@ -59,7 +54,7 @@ class ChatApp extends React.Component {
     const text = e.target.elements.text.value;
     e.target.elements.text.value = '';
     
-    clientMessageEmitter(text);
+    socketEmit.clientMessage(text);
   }
 
   render() {    
@@ -73,11 +68,12 @@ class ChatApp extends React.Component {
         />
         <div className="chat-content">
           <div className="topbar">
-            <p>{this.state.room}</p>
+            <p className="room-name">{this.state.room && this.state.room.name}</p>
+            <p className="room-users">{this.state.room && this.state.room.users.join(', ').slice(0, 30)}</p>
           </div>
           <div className="messages">
             {this.state.messages.map((message) => {
-              if (message.sender === this.state.user.nickname) {
+              if (message.sender === this.state.user.name) {
                 return <MyMessage message={message} />
               } else {
                 return <Message message={message} />

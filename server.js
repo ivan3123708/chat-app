@@ -19,35 +19,36 @@ app.use(express.static(publicPath));
 io.on('connection', (socket) => {
   console.log('User connected');
 
-  socket.on('userJoin', (nickname, callback) => {
-    users.addUser(socket.id, nickname);
+  socket.on('userJoin', (userName, callback) => {
+    users.addUser(socket.id, userName);
     socket.emit('setUser', users.getUser(socket.id));
     io.emit('updateUsers', users.getUsers());
 
     socket.join('Home Chat');
     socket.room = 'Home Chat';
-    
-    rooms.addRoom('Home Chat');
-    socket.emit('setRoom', socket.room);
+
+    rooms.addUser(userName, 'Home Chat');
+    socket.emit('setRoom', rooms.getRoom(socket.room));
     io.emit('updateRooms', rooms.getRooms());
     
     callback();
   });
 
-  socket.on('joinRoom', (newRoom) => {
+  socket.on('joinRoom', (roomName) => {
     socket.leave(socket.room);
 
-    socket.join(newRoom);
-    socket.room = newRoom;
+    socket.join(roomName);
+    socket.room = roomName;
 
-    rooms.addRoom(newRoom);
-    socket.emit('setRoom', socket.room);
+    rooms.addRoom(roomName);
+    rooms.addUser(users.getUser(socket.id).name, roomName);
+    socket.emit('setRoom', rooms.getRoom(socket.room));
     io.emit('updateRooms', rooms.getRooms());
   });
 
   socket.on('clientMessage', (text) => {
     const message = {
-      sender: users.getUser(socket.id).nickname,
+      sender: users.getUser(socket.id).name,
       text: text,
       time: moment().format('HH:mm')
     }

@@ -4,18 +4,14 @@ class Users {
   }
 
   getUsers() {
-    return this.users.map((user) => user.nickname);
+    return this.users.map((user) => user.name);
   }
 
-  addUser(id, nickname) {
-    const user = {
+  addUser(id, name) {
+    this.users.push({
       id: id,
-      nickname: nickname
-    };
-
-    this.users.push(user);
-
-    return user;
+      name: name
+    });
   }
   
   getUser(id) {

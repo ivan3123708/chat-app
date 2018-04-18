@@ -1,16 +1,16 @@
 import React from 'react';
 import Modal from 'react-modal';
-import { userJoinEmitter } from '../socketEvents';
+import { socketEmit } from '../socketEvents';
 
 class LoginModal extends React.Component {
 
   loginUser = (e) => {
     e.preventDefault();
 
-    const nickname = e.target.elements.nickname.value;
-    e.target.elements.nickname.value = '';
+    const userName = e.target.elements.userName.value;
+    e.target.elements.userName.value = '';
 
-    userJoinEmitter(nickname);
+    socketEmit.userJoin(userName);
 
     this.props.onRequestClose();
   }
@@ -24,7 +24,7 @@ class LoginModal extends React.Component {
       >
         <form onSubmit={this.loginUser}>
           <h3>Enter nickname</h3>
-          <input type="text" name="nickname" autoFocus />
+          <input type="text" name="userName" autoFocus />
         </form>
       </Modal>
     )

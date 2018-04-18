@@ -3,7 +3,7 @@ import CreateRoomModal from './CreateRoomModal';
 import Add from 'react-icons/lib/md/add-box';
 import Join from 'react-icons/lib/md/input';
 import Edit from 'react-icons/lib/md/edit';
-import { joinRoomEmitter } from '../socketEvents';
+import { socketEmit } from '../socketEvents';
 
 class Sidebar extends React.Component {
 
@@ -15,8 +15,8 @@ class Sidebar extends React.Component {
     this.setState((prevState) => ({ createRoomModalOpen: !prevState.createRoomModalOpen }));
   }
 
-  joinRoom = (room) => {
-    joinRoomEmitter(room);
+  joinRoom = (roomName) => {
+    socketEmit.joinRoom(roomName);
   }
 
   render() {
@@ -27,7 +27,7 @@ class Sidebar extends React.Component {
             <img src={'/img/default_avatar.png'} />
           </div>
           <div className="name">
-            <p>{this.props.user && this.props.user.nickname}</p>
+            <p>{this.props.user && this.props.user.name}</p>
             <button title="Edit profile">
               Edit
               <Edit className="edit"/>
@@ -44,9 +44,12 @@ class Sidebar extends React.Component {
           <div className="public-chats-list">
             {this.props.rooms.map((room) => (
               <div className="list">
-                <img src={room === 'Home Chat' ? '/img/home_chat.png' : '/img/public_chat.png'} />
-                <p>{room}</p>
-                <button onClick={() => this.joinRoom(room)} title="Join this room">
+                <img src={room.name === 'Home Chat' ? '/img/home_chat.png' : '/img/public_chat.png'} />
+                <div>
+                  <p className="primary">{room.name}</p>
+                  <p className="secondary">{room.users.join(', ').slice(0, 30)}</p>
+                </div>
+                <button onClick={() => this.joinRoom(room.name)} title="Join this room">
                   <Join className="join" size="20px" />
                 </button>
               </div>
@@ -61,7 +64,7 @@ class Sidebar extends React.Component {
             {this.props.users.map((user) => (
               <div className="list">
                 <img src={'/img/default_avatar.png'} />
-                <p>{user}</p>
+                <p className="primary">{user}</p>
               </div>
             ))}
           </div>

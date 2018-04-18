@@ -1,16 +1,16 @@
 import React from 'react';
 import Modal from 'react-modal';
-import { joinRoomEmitter } from '../socketEvents';
+import { socketEmit } from '../socketEvents';
 
 class CreateRoomModal extends React.Component {
 
   createRoom = (e) => {
     e.preventDefault();
 
-    const room = e.target.elements.room.value;
-    e.target.elements.room.value = '';
+    const roomName = e.target.elements.roomName.value;
+    e.target.elements.roomName.value = '';
 
-    joinRoomEmitter(room);
+    socketEmit.joinRoom(roomName);
 
     this.props.onRequestClose();
   }
@@ -24,7 +24,7 @@ class CreateRoomModal extends React.Component {
       >
         <form onSubmit={this.createRoom}>
           <h3>Enter room name</h3>
-          <input type="text" name="room" autoFocus />
+          <input type="text" name="roomName" autoFocus />
         </form>
       </Modal>
     )
