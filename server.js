@@ -59,12 +59,20 @@ io.on('connection', (socket) => {
   })
 
   socket.on('clientMessage', (data) => {
+    const room = rooms.getRoom(data.roomName);
     const message = {
       sender: users.getUser(socket.id).name,
       text: data.text,
       time: moment().format('HH:mm')
     }
-    io.to(data.roomName).emit('serverMessage', message);
+
+    if (room.messages.length && message.sender === room.messages[room.messages.length - 1].sender) {
+      message.consecutive = true;
+    }
+    
+    rooms.addMessage(message, data.roomName);
+
+    io.emit('updateRooms', rooms.getRooms());
   });
 
   socket.on('disconnect', () => {

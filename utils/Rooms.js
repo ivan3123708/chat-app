@@ -24,7 +24,7 @@ class Rooms {
   }
 
   getRoom(roomName) {
-    return this.rooms.find((room) => room.name === roomName).name;
+    return this.rooms.find((room) => room.name === roomName);
   }
 
   addUser(userName, roomName) {
@@ -34,6 +34,10 @@ class Rooms {
   removeUser(userName, roomName) {
     const room = this.getRoom();
     room.users = room.users.filter((user) => user !== userName);
+  }
+
+  addMessage(message, roomName) {
+    this.rooms.find((room) => room.name === roomName).messages.push(message);
   }
 };
 

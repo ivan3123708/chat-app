@@ -22,11 +22,6 @@ const socketOn = {
     socket.on('updateRooms', (rooms) => {
       callback(rooms)
     });
-  },
-  serverMessage: (callback) => {
-    socket.on('serverMessage', (message) => {
-      callback(message);
-    });
   }
 };
 

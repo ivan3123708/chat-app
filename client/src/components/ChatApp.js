@@ -16,7 +16,6 @@ class ChatApp extends React.Component {
       users: [],
       room: null,
       rooms: [],
-      messages: [],
       loginModalOpen: true
     };
 
@@ -29,18 +28,11 @@ class ChatApp extends React.Component {
     });
 
     socketOn.updateRoom((room) => {
-      this.setState({ room: room });
+      this.setState({ room: room.name });
     });
 
     socketOn.updateRooms((rooms) => {
       this.setState({ rooms: rooms });
-    });
-
-    socketOn.serverMessage((message) => {
-      if (this.state.messages.length && message.sender === this.state.messages[this.state.messages.length - 1].sender) {
-        message.consecutive = true;
-      };
-      this.setState((prevState) => ({ messages: prevState.messages.concat(message) }));
     });
   }
 
@@ -57,6 +49,10 @@ class ChatApp extends React.Component {
     socketEmit.clientMessage(text, this.state.room);
   }
 
+  switchRoom = (room) => {
+    this.setState({ room: room });
+  }
+
   render() {    
     return (
       <div className="chat-app">
@@ -65,6 +61,7 @@ class ChatApp extends React.Component {
           user={this.state.user}
           users={this.state.users} 
           rooms={this.state.rooms} 
+          switchRoom={this.switchRoom}
         />
         <div className="chat-content">
           <div className="topbar">
@@ -72,7 +69,7 @@ class ChatApp extends React.Component {
             <p className="room-users">{this.state.room && this.state.rooms.find((room) => room.name === this.state.room).users.join(', ').slice(0, 30)}</p>
           </div>
           <div className="messages">
-            {this.state.messages.map((message) => {
+            {this.state.room && this.state.rooms.find((room) => room.name === this.state.room).messages.map((message) => {
               if (message.sender === this.state.user.name) {
                 return <MyMessage message={message} />
               } else {
