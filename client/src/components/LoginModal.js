@@ -10,7 +10,7 @@ class LoginModal extends React.Component {
     const userName = e.target.elements.userName.value;
     e.target.elements.userName.value = '';
 
-    socketEmit.userJoin(userName);
+    socketEmit.joinUser(userName);
 
     this.props.onRequestClose();
   }

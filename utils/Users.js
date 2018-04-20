@@ -10,16 +10,26 @@ class Users {
   addUser(id, name) {
     this.users.push({
       id: id,
-      name: name
+      name: name,
+      rooms: ['Home Chat']
     });
   }
   
   getUser(id) {
-    return this.users.filter((user) => user.id === id)[0];
+    return this.users.find((user) => user.id === id);
   }
 
   removeUser(id) {
-    this.users.filter((user) => user.id !== id);
+    this.users = this.users.filter((user) => user.id !== id);
+  }
+
+  addRoom(id, roomName) {
+    this.users.find((user) => user.id === id).rooms.push(roomName);
+  }
+
+  removeRoom(id, roomName) {
+    const user = this.getUser();
+    user.room = user.rooms.filter((room) => room !== roomName);
   }
 };
 

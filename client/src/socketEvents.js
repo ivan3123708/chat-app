@@ -3,8 +3,8 @@ import socketIOClient from 'socket.io-client';
 const socket = socketIOClient('http://localhost:3000');
 
 const socketOn = {
-  setUser: (callback) => {
-    socket.on('setUser', (user) => {
+  updateUser: (callback) => {
+    socket.on('updateUser', (user) => {
       callback(user);
     });
   },
@@ -13,8 +13,8 @@ const socketOn = {
       callback(users);
     });
   },
-  setRoom: (callback) => {
-    socket.on('setRoom', (room) => {
+  updateRoom: (callback) => {
+    socket.on('updateRoom', (room) => {
       callback(room);
     });
   },
@@ -31,8 +31,8 @@ const socketOn = {
 };
 
 const socketEmit = {
-  userJoin: (userName) => {
-    socket.emit('userJoin', userName, (err) => {
+  joinUser: (userName) => {
+    socket.emit('joinUser', userName, (err) => {
       if (err) {
         console.log('ERROR');
       } else {
@@ -43,8 +43,11 @@ const socketEmit = {
   joinRoom: (roomName) => {
     socket.emit('joinRoom', roomName);
   },
-  clientMessage: (text) => {
-    socket.emit('clientMessage', text);
+  leaveRoom: (roomName) => {
+    socket.emit('leaveRoom', roomName);
+  },
+  clientMessage: (text, roomName) => {
+    socket.emit('clientMessage', { text, roomName });
   }
 };
 

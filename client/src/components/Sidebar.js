@@ -1,8 +1,9 @@
 import React from 'react';
 import CreateRoomModal from './CreateRoomModal';
 import Add from 'react-icons/lib/md/add-box';
-import Join from 'react-icons/lib/md/input';
-import Edit from 'react-icons/lib/md/edit';
+import Join from 'react-icons/lib/fa/sign-in';
+import Edit from 'react-icons/lib/fa/pencil';
+import Leave from 'react-icons/lib/fa/sign-out';
 import { socketEmit } from '../socketEvents';
 
 class Sidebar extends React.Component {
@@ -17,6 +18,10 @@ class Sidebar extends React.Component {
 
   joinRoom = (roomName) => {
     socketEmit.joinRoom(roomName);
+  }
+
+  leaveRoom = (roomName) => {
+    socketEmit.leaveRoom(roomName);
   }
 
   render() {
@@ -49,9 +54,15 @@ class Sidebar extends React.Component {
                   <p className="primary">{room.name}</p>
                   <p className="secondary">{room.users.join(', ').slice(0, 30)}</p>
                 </div>
-                <button onClick={() => this.joinRoom(room.name)} title="Join this room">
-                  <Join className="join" size="20px" />
-                </button>
+                  {!this.props.user.rooms.includes(room.name) ? 
+                    <button onClick={() => this.joinRoom(room.name)} title="Join this room">
+                      <Join className="icon" size="20px" />
+                    </button>
+                    :
+                    <button onClick={() => this.leaveRoom(room.name)} title="Leave this room">
+                      <Leave className="icon" size="20px" />
+                    </button>
+                  }
               </div>
             ))}
           </div>

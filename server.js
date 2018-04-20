@@ -19,40 +19,52 @@ app.use(express.static(publicPath));
 io.on('connection', (socket) => {
   console.log('User connected');
 
-  socket.on('userJoin', (userName, callback) => {
+  socket.on('joinUser', (userName, callback) => {
     users.addUser(socket.id, userName);
-    socket.emit('setUser', users.getUser(socket.id));
-    io.emit('updateUsers', users.getUsers());
+    rooms.addUser(userName, 'Home Chat');
 
     socket.join('Home Chat');
     socket.room = 'Home Chat';
 
-    rooms.addUser(userName, 'Home Chat');
-    socket.emit('setRoom', rooms.getRoom(socket.room));
+    io.emit('updateUsers', users.getUsers());
+    socket.emit('updateUser', users.getUser(socket.id));
     io.emit('updateRooms', rooms.getRooms());
-    
+    socket.emit('updateRoom', rooms.getRoom(socket.room));
+
     callback();
   });
 
   socket.on('joinRoom', (roomName) => {
-    socket.leave(socket.room);
+    users.addRoom(socket.id, roomName);
+    rooms.addRoom(roomName);
+    rooms.addUser(users.getUser(socket.id).name, roomName);
 
     socket.join(roomName);
     socket.room = roomName;
 
-    rooms.addRoom(roomName);
-    rooms.addUser(users.getUser(socket.id).name, roomName);
-    socket.emit('setRoom', rooms.getRoom(socket.room));
+    io.emit('updateUsers', users.getUsers());
+    socket.emit('updateUser', users.getUser(socket.id));
     io.emit('updateRooms', rooms.getRooms());
+    socket.emit('updateRoom', rooms.getRoom(socket.room));
   });
 
-  socket.on('clientMessage', (text) => {
+  socket.on('leaveRoom', (roomName) => {
+    socket.leave(roomName);
+
+    rooms.removeUser(users.getUser(socket.id).name, roomName);
+    users.removeRoom(socket.id, roomName);
+    
+    io.emit('updateRooms', rooms.getRooms());
+    io.emit('updateUsers', users.getUsers());
+  })
+
+  socket.on('clientMessage', (data) => {
     const message = {
       sender: users.getUser(socket.id).name,
-      text: text,
+      text: data.text,
       time: moment().format('HH:mm')
     }
-    io.to(socket.room).emit('serverMessage', message);
+    io.to(data.roomName).emit('serverMessage', message);
   });
 
   socket.on('disconnect', () => {

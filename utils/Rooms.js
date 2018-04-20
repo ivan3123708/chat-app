@@ -24,11 +24,16 @@ class Rooms {
   }
 
   getRoom(roomName) {
-    return this.rooms.find((room) => room.name === roomName);
+    return this.rooms.find((room) => room.name === roomName).name;
   }
 
   addUser(userName, roomName) {
     this.rooms.find((room) => room.name === roomName).users.push(userName);
+  }
+
+  removeUser(userName, roomName) {
+    const room = this.getRoom();
+    room.users = room.users.filter((user) => user !== userName);
   }
 };
 

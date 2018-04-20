@@ -20,7 +20,7 @@ class ChatApp extends React.Component {
       loginModalOpen: true
     };
 
-    socketOn.setUser((user) => {
+    socketOn.updateUser((user) => {
       this.setState({ user: user });
     });
 
@@ -28,7 +28,7 @@ class ChatApp extends React.Component {
       this.setState({ users: users });
     });
 
-    socketOn.setRoom((room) => {
+    socketOn.updateRoom((room) => {
       this.setState({ room: room });
     });
 
@@ -54,7 +54,7 @@ class ChatApp extends React.Component {
     const text = e.target.elements.text.value;
     e.target.elements.text.value = '';
     
-    socketEmit.clientMessage(text);
+    socketEmit.clientMessage(text, this.state.room);
   }
 
   render() {    
@@ -68,8 +68,8 @@ class ChatApp extends React.Component {
         />
         <div className="chat-content">
           <div className="topbar">
-            <p className="room-name">{this.state.room && this.state.room.name}</p>
-            <p className="room-users">{this.state.room && this.state.room.users.join(', ').slice(0, 30)}</p>
+            <p className="room-name">{this.state.room && this.state.room}</p>
+            <p className="room-users">{this.state.room && this.state.rooms.find((room) => room.name === this.state.room).users.join(', ').slice(0, 30)}</p>
           </div>
           <div className="messages">
             {this.state.messages.map((message) => {
@@ -83,7 +83,7 @@ class ChatApp extends React.Component {
           <div className="chat-input">
             <form onSubmit={(e) => this.sendMessage(e)}>
               <input type="text" name="text" placeholder="Write message..." spellCheck="false" autoFocus/>
-              <button><Send color="#8F5DB7" size="24px" /></button>
+              <button><Send size="24px" /></button>
             </form>
           </div>
         </div>
