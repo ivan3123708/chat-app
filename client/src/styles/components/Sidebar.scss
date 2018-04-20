@@ -71,16 +71,23 @@
   border-radius: 50%;
 }
 
-.sidebar .list p {
+.sidebar .list .primary {
   margin: auto 10px;
   color: #fff;
   font-size: 18px;
+}
+
+.sidebar .list .secondary {
+  margin: 5px 10px;
+  color: #fff;
+  font-size: 12px;
+  font-style: italic;
 }
 
 .sidebar .list button {
   margin-left: auto;
 }
 
-.sidebar .list .join {
+.sidebar .list .icon {
   color: #fff;
 }

@@ -1,11 +1,11 @@
-$violet: #8F5DB7;
-$violet-light: #ab5fe9;
-$violet-shadow: #56386e;
+$violet: #6c65ac;
+$violet-light: #877ed8;
+$violet-shadow: #4b4677;
 $violet-gradient: linear-gradient(to bottom right, $violet 0%, $violet 40%, $violet-light 100%);
 $grey: #CFD8DC;
 $grey-dark: #a8a8a8;
 $grey-text: #949494;
-$blue-light: #a7d2e6;
+$blue-light: #a5cfd5;
 
 *:focus {
     outline: none;
@@ -21,7 +21,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-    background: #bc79f3; 
+    background: #9c92f5; 
 }
 
 ::-webkit-scrollbar-thumb {
@@ -29,7 +29,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #7d52a0; 
+    background: #5f5897; 
 }
 
 button {

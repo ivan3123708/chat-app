@@ -14,16 +14,21 @@
 }
 
 .topbar {
-  height: 40px;
-  background: #fff;
-  box-shadow: 0 1px 10px $grey-dark;
+  height: 55px;
+  background: $violet-gradient;
+  color: #fff;
+  text-align: center;
 }
 
-.topbar p {
-  margin: 10px auto;
-  color: $violet;
+.topbar .room-name {
+  margin: 10px auto 5px auto;
   font-weight: bold;
-  text-align: center;
+}
+
+.topbar .room-users {
+  margin: 0 auto 5px auto;
+  font-size: 12px;
+  font-style: italic;
 }
 
 .messages {
@@ -55,4 +60,8 @@
   font-family: 'Muli', sans-serif;
   border: none;
   border-radius: 10px;
+}
+
+.chat-input button {
+  color: $violet;
 }
