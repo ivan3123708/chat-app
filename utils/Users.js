@@ -7,16 +7,16 @@ class Users {
     return this.users.map((user) => user.name);
   }
 
+  getUser(id) {
+    return this.users.find((user) => user.id === id);
+  }
+
   addUser(id, name) {
     this.users.push({
       id: id,
       name: name,
       rooms: ['Home Chat']
     });
-  }
-  
-  getUser(id) {
-    return this.users.find((user) => user.id === id);
   }
 
   removeUser(id) {
@@ -28,8 +28,8 @@ class Users {
   }
 
   removeRoom(id, roomName) {
-    const user = this.getUser();
-    user.room = user.rooms.filter((room) => room !== roomName);
+    const user = this.getUser(id);
+    user.rooms = user.rooms.filter((room) => room !== roomName);
   }
 };
 

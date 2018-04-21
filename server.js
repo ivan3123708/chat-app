@@ -49,14 +49,18 @@ io.on('connection', (socket) => {
   });
 
   socket.on('leaveRoom', (roomName) => {
-    socket.leave(roomName);
-
     rooms.removeUser(users.getUser(socket.id).name, roomName);
     users.removeRoom(socket.id, roomName);
     
-    io.emit('updateRooms', rooms.getRooms());
+    socket.leave(roomName);
+    const user = users.getUser(socket.id);
+    socket.room = user.rooms[user.rooms.length - 1];
+
+    socket.emit('updateRoom', rooms.getRoom(socket.room));
     io.emit('updateUsers', users.getUsers());
-  })
+    socket.emit('updateUser', users.getUser(socket.id));
+    io.emit('updateRooms', rooms.getRooms());
+  });
 
   socket.on('clientMessage', (data) => {
     const room = rooms.getRoom(data.roomName);

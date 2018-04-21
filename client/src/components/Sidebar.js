@@ -54,14 +54,14 @@ class Sidebar extends React.Component {
                   <p className="primary" onClick={() => this.props.switchRoom(room.name)} title="Switch to this room">{room.name}</p>
                   <p className="secondary">{room.users.join(', ').slice(0, 30)}</p>
                 </div>
-                  {!this.props.user.rooms.includes(room.name) ? 
+                  {room.name !== 'Home Chat' && (!this.props.user.rooms.includes(room.name) ? 
                     <button onClick={() => this.joinRoom(room.name)} title="Join this room">
                       <Join className="icon" size="20px" />
                     </button>
                     :
                     <button onClick={() => this.leaveRoom(room.name)} title="Leave this room">
                       <Leave className="icon" size="20px" />
-                    </button>
+                    </button>)
                   }
               </div>
             ))}
