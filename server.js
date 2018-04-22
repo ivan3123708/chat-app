@@ -17,9 +17,8 @@ const rooms = new Rooms();
 app.use(express.static(publicPath));
 
 io.on('connection', (socket) => {
-  console.log('User connected');
 
-  socket.on('joinUser', (userName, callback) => {
+  socket.on('joinUser', (userName) => {
     users.addUser(socket.id, userName);
     rooms.addUser(userName, 'Home Chat');
 
@@ -30,8 +29,6 @@ io.on('connection', (socket) => {
     socket.emit('updateUser', users.getUser(socket.id));
     io.emit('updateRooms', rooms.getRooms());
     socket.emit('updateRoom', rooms.getRoom(socket.room));
-
-    callback();
   });
 
   socket.on('joinRoom', (roomName) => {
@@ -80,11 +77,13 @@ io.on('connection', (socket) => {
   });
 
   socket.on('disconnect', () => {
+    rooms.removeUser(users.getUser(socket.id).name, socket.room);
     users.removeUser(socket.id);
-    io.emit('updateUsers', users.getUsers());
-
+    
     socket.leave(socket.room);
-    console.log('User disconnected');
+
+    io.emit('updateRooms', rooms.getRooms());
+    io.emit('updateUsers', users.getUsers());
   });
 });
 

@@ -27,13 +27,7 @@ const socketOn = {
 
 const socketEmit = {
   joinUser: (userName) => {
-    socket.emit('joinUser', userName, (err) => {
-      if (err) {
-        console.log('ERROR');
-      } else {
-        console.log(`${userName} JOINED`);
-      }
-    });
+    socket.emit('joinUser', userName);
   },
   joinRoom: (roomName) => {
     socket.emit('joinRoom', roomName);
