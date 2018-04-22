@@ -32,7 +32,20 @@ class ChatApp extends React.Component {
     });
 
     socketOn.updateRooms((rooms) => {
+      const messages = document.getElementsByClassName('messages')[0];
+
+      const prevMessageHeight = messages.lastChild ? messages.lastChild.offsetHeight : 0;
+
       this.setState({ rooms: rooms });
+
+      const clientHeight = messages.clientHeight;
+      const scrollHeight = messages.scrollHeight;
+      const scrollTop = messages.scrollTop;
+      const newMessageHeight = messages.lastChild.offsetHeight;
+
+      if (clientHeight + scrollTop + newMessageHeight + prevMessageHeight >= scrollHeight) {
+        messages.scrollTop = scrollHeight;
+      }
     });
   }
 
