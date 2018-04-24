@@ -1,0 +1,47 @@
+.my-message {
+  display: flex;
+  max-width: 500px;
+  height: auto;
+  margin-left: auto;
+  justify-content: flex-end;
+
+  .message-content {
+    min-width: 100px;
+    height: auto;
+    margin: 5px;
+    padding: 5px 10px;
+    text-align: right;
+    background: $blue-light;
+    border-radius: 6px;
+    word-break: break-all;
+
+    .sender {
+      margin: 0 0 12px 0;
+      color: $violet;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .text {
+      margin: 0;
+    }
+
+    .time {
+      float: left;
+      margin: 7px 0 0 0;
+      color: $grey-text;
+      font-size: 12px;
+      font-style: italic;
+    }
+  }
+
+  .message-content-consecutive {
+    @extend .message-content;
+    margin-right: 65px;
+  }
+
+  img {
+    max-height: 50px;
+    margin: 5px;
+  }
+}

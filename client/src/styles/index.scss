@@ -1,43 +1,5 @@
-$violet: #6c65ac;
-$violet-light: #877ed8;
-$violet-shadow: #4b4677;
-$violet-gradient: linear-gradient(to bottom right, $violet 0%, $violet 40%, $violet-light 100%);
-$grey: #CFD8DC;
-$grey-dark: #a8a8a8;
-$grey-text: #949494;
-$blue-light: #a5cfd5;
-
-*:focus {
-    outline: none;
-}
-
-body {
-  margin: 0;
-  font-family: 'Muli', sans-serif;
-}
-
-::-webkit-scrollbar {
-    width: 5px;
-}
-
-::-webkit-scrollbar-track {
-    background: #9c92f5; 
-}
-
-::-webkit-scrollbar-thumb {
-    background: $violet; 
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #5f5897; 
-}
-
-button {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
-
+@import './base/colors.scss';
+@import './base/base.scss';
 @import './components/ChatApp.scss';
 @import './components/Sidebar.scss';
 @import './components/Message.scss';

@@ -1,0 +1,36 @@
+.login-modal {
+  width: 90%;
+  max-width: 500px;
+  height: auto;
+  margin: auto;
+  margin-top: 100px;
+  background: $violet-gradient;
+  border-radius: 5px;
+  outline: none;
+
+  form {
+    width: 90%;
+    max-width: 450px;
+    margin: auto;
+    text-align: center;
+    font-family: 'Muli';
+    border: 1px solid transparent;
+
+    h3 {
+      margin-bottom: 60px;
+      color: #fff;
+    }
+
+    input {
+      margin: 20px auto;
+      background: transparent;
+      color: #fff;
+      font-size: 20px;
+      font-family: 'Muli';
+      font-weight: bold;
+      border: none;
+      text-align: center;
+      border-bottom: 1px solid #fff;
+    }
+  }
+}
