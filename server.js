@@ -77,7 +77,11 @@ io.on('connection', (socket) => {
   });
 
   socket.on('disconnect', () => {
-    rooms.removeUser(users.getUser(socket.id).name, socket.room);
+    const user = users.getUser(socket.id);
+
+    user && user.rooms.forEach((room) => {
+      rooms.removeUser(users.getUser(socket.id).name, room);
+    });
     users.removeUser(socket.id);
     
     socket.leave(socket.room);
