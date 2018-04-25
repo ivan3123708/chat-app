@@ -4,6 +4,7 @@ import LoginModal from './LoginModal';
 import Sidebar from './Sidebar';
 import Message from './Message';
 import MyMessage from './MyMessage';
+import More from 'react-icons/lib/fa/angle-double-right';
 import Send from 'react-icons/lib/md/send';
 
 class ChatApp extends React.Component {
@@ -66,6 +67,15 @@ class ChatApp extends React.Component {
     this.setState({ room: room });
   }
 
+  openSidebar = () => {
+    const sidebar = document.getElementsByClassName('sidebar')[0];
+
+    if (sidebar.className.match(/(?:^|\s)closed(?!\S)/)) {
+      sidebar.classList.remove('closed');
+      sidebar.classList.add('open');
+    }
+  }
+
   render() {    
     return (
       <div className="chat-app">
@@ -78,8 +88,15 @@ class ChatApp extends React.Component {
         />
         <div className="chat-content">
           <div className="topbar">
-            <p className="room-name">{this.state.room && this.state.room}</p>
-            <p className="room-users">{this.state.room && this.state.rooms.find((room) => room.name === this.state.room).users.join(', ').slice(0, 30)}</p>
+            <div className="more">
+              <button onClick={this.openSidebar}>
+                <More className="icon" size="24px"/>
+              </button>
+            </div>
+            <div className="room-info">
+              <p className="room-name">{this.state.room && this.state.room}</p>
+              <p className="room-users">{this.state.room && this.state.rooms.find((room) => room.name === this.state.room).users.join(', ').slice(0, 30)}</p>
+            </div>
           </div>
           <div className="messages">
             {this.state.room && this.state.rooms.find((room) => room.name === this.state.room).messages.map((message) => {

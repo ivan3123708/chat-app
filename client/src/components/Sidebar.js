@@ -1,5 +1,6 @@
 import React from 'react';
 import CreateRoomModal from './CreateRoomModal';
+import Close from 'react-icons/lib/fa/angle-double-left';
 import Add from 'react-icons/lib/md/add-box';
 import Join from 'react-icons/lib/fa/sign-in';
 import Edit from 'react-icons/lib/fa/pencil';
@@ -24,18 +25,34 @@ class Sidebar extends React.Component {
     socketEmit.leaveRoom(roomName);
   }
 
+  closeSidebar = () => {
+    const sidebar = document.getElementsByClassName('sidebar')[0];
+
+    if (sidebar.className.match(/(?:^|\s)open(?!\S)/)) {
+      sidebar.classList.remove('open');
+      sidebar.classList.add('closed');
+    }
+  }
+
   render() {
     return (
-      <div className="sidebar">
+      <div className="sidebar closed">
         <div className="profile">
-          <div>
-            <img src={'/img/default_avatar.png'} />
+          <div className="left">
+            <div>
+              <img src={'/img/default_avatar.png'} />
+            </div>
+            <div>
+              <p>{this.props.user && this.props.user.name}</p>
+              <button className="edit" title="Edit profile">
+                Edit
+                <Edit className="icon"/>
+              </button>
+            </div>
           </div>
-          <div>
-            <p>{this.props.user && this.props.user.name}</p>
-            <button title="Edit profile">
-              Edit
-              <Edit className="edit"/>
+          <div className="close">
+            <button onClick={this.closeSidebar}>
+              <Close className="icon" size="24px"/>
             </button>
           </div>
         </div>
@@ -43,7 +60,7 @@ class Sidebar extends React.Component {
           <div className="panel">
             <p>Public Chats</p>
             <button onClick={this.toggleModal} title="Create new room">
-              <Add className="add" size="20px" />
+              <Add className="icon" size="20px" />
             </button>
           </div>
           <div className="public-chats-list">

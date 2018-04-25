@@ -5,6 +5,10 @@
   margin-left: auto;
   justify-content: flex-end;
 
+  @media (max-width: $medium) {
+    max-width: 300px;
+  }
+
   .message-content {
     min-width: 100px;
     height: auto;
@@ -38,10 +42,18 @@
   .message-content-consecutive {
     @extend .message-content;
     margin-right: 65px;
+
+    @media (max-width: $medium) {
+      margin-right: 55px;
+    }
   }
 
   img {
     max-height: 50px;
     margin: 5px;
+
+    @media (max-width: $medium) {
+      max-height: 40px;
+    }
   }
 }

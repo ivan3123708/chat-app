@@ -6,26 +6,51 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 80%;
+    width: 100%;
     height: 100vh;
     max-height: 100vh;
     background: $grey;
 
+    @media (max-width: $medium) {
+      width: 100%;
+    }
+
     .topbar {
+      display: flex;
       height: 55px;
       background: $violet-gradient;
       color: #fff;
       text-align: center;
 
-      .room-name {
-        margin: 10px auto 5px auto;
-        font-weight: bold;
-      }
+      .more {
+        display: none;
 
-      .room-users {
-        margin: 0 auto 5px auto;
-        font-size: 12px;
-        font-style: italic;
+        @media (max-width: $medium) {
+          display: inline;
+        }
+
+        button {
+          margin-top: 12px;
+
+          .icon {
+            color: #fff;
+          }
+        }
+      }
+      
+      .room-info {
+        width: 100%;
+        
+        .room-name {
+          margin: 10px auto 5px auto;
+          font-weight: bold;
+        }
+
+        .room-users {
+          margin: 0 auto 5px auto;
+          font-size: 12px;
+          font-style: italic;
+        }
       }
     }
 
@@ -33,13 +58,17 @@
       height: 83%;
       padding: 20px;
       overflow: auto;
+
+      @media (max-width: $medium) {
+        padding: 5px;
+      }
     }
 
     .chat-input {
       height: 55px;
       padding: 0 20px;
       background: #fff;
-      box-shadow: 0 -1px 10px $grey-dark;
+      box-shadow: 0 -1px 10px $light-shadow;
 
       form {
         display: flex;

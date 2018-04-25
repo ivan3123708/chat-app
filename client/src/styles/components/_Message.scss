@@ -3,9 +3,17 @@
   max-width: 500px;
   height: auto;
 
+  @media (max-width: $medium) {
+    max-width: 300px;
+  }
+
   img {
     max-height: 50px;
     margin: 5px;
+
+    @media (max-width: $medium) {
+      max-height: 40px;
+    }
   }
 
   .message-content {
@@ -40,5 +48,9 @@
   .message-content-consecutive {
     @extend .message-content;
     margin-left: 65px;
+
+    @media (max-width: $medium) {
+      margin-left: 55px;
+    }
   }
 }
