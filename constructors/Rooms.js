@@ -45,7 +45,13 @@ class Rooms {
   }
 
   addMessage(message, roomName) {
-    this.rooms.find((room) => room.name === roomName).messages.push(message);
+    const room = this.rooms.find((room) => room.name === roomName);
+
+    if (room.messages.length >= 50) {
+      room.messages.shift();
+    }
+
+    room.messages.push(message);
   }
 };
 
