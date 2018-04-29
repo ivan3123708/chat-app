@@ -79,7 +79,7 @@ class Sidebar extends React.Component {
               <div className="list">
                 <img src={room.name === 'Home Chat' ? '/img/home_chat.png' : '/img/public_chat.png'} />
                 <div>
-                  <p className="primary" onClick={() => this.props.switchRoom(room.name)} title="Switch to this room">{room.name}</p>
+                  <p className="primary" onClick={() => this.props.user.rooms.includes(room.name) && this.props.switchRoom(room.name)} title="Switch to this room">{room.name}</p>
                   <p className="secondary">{room.users.join(', ').slice(0, 30)}</p>
                 </div>
                 {room.name !== 'Home Chat' && !room.password && (!this.props.user.rooms.includes(room.name) ? 
