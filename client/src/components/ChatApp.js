@@ -57,10 +57,13 @@ class ChatApp extends React.Component {
   sendMessage = (e) => {
     e.preventDefault();
 
-    const text = e.target.elements.text.value;
-    e.target.elements.text.value = '';
-    
-    socketEmit.clientMessage(text, this.state.room);
+    const text = e.target.elements.text.value.trim();
+
+    if (text) {
+      socketEmit.clientMessage(text, this.state.room);
+
+      e.target.elements.text.value = '';
+    }
   }
 
   switchRoom = (room) => {

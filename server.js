@@ -3,8 +3,8 @@ const path = require('path');
 const express = require('express');
 const socketIO = require('socket.io');
 const moment = require('moment');
-const { Users } = require('./utils/Users');
-const { Rooms } = require('./utils/Rooms');
+const { Users } = require('./constructors/Users');
+const { Rooms } = require('./constructors/Rooms');
 
 const app = express();
 const server = http.createServer(app);
@@ -31,18 +31,28 @@ io.on('connection', (socket) => {
     socket.emit('updateRoom', rooms.getRoom(socket.room));
   });
 
-  socket.on('joinRoom', (roomName) => {
-    users.addRoom(socket.id, roomName);
-    rooms.addRoom(roomName);
-    rooms.addUser(users.getUser(socket.id).name, roomName);
+  socket.on('joinRoom', (data, callback) => {
+    const roomName = data.roomName;
+    const password = data.password || null;
+    const room = rooms.getRoom(roomName);
 
-    socket.join(roomName);
-    socket.room = roomName;
+    if (room && room.password !== password) {
+      callback('Wrong password');
+    } else {
+      users.addRoom(socket.id, roomName);
+      rooms.addRoom(roomName, password);
+      rooms.addUser(users.getUser(socket.id).name, roomName);
 
-    io.emit('updateUsers', users.getUsers());
-    socket.emit('updateUser', users.getUser(socket.id));
-    io.emit('updateRooms', rooms.getRooms());
-    socket.emit('updateRoom', rooms.getRoom(socket.room));
+      socket.join(roomName);
+      socket.room = roomName;
+
+      io.emit('updateUsers', users.getUsers());
+      socket.emit('updateUser', users.getUser(socket.id));
+      io.emit('updateRooms', rooms.getRooms());
+      socket.emit('updateRoom', rooms.getRoom(socket.room));
+
+      callback(null);
+    }
   });
 
   socket.on('leaveRoom', (roomName) => {

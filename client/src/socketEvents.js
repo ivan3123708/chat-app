@@ -29,8 +29,8 @@ const socketEmit = {
   joinUser: (userName) => {
     socket.emit('joinUser', userName);
   },
-  joinRoom: (roomName) => {
-    socket.emit('joinRoom', roomName);
+  joinRoom: (roomName, password, callback) => {
+    socket.emit('joinRoom', { roomName, password }, (err) => callback(err));
   },
   leaveRoom: (roomName) => {
     socket.emit('leaveRoom', roomName);

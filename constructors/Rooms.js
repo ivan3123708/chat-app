@@ -3,6 +3,7 @@ class Rooms {
     this.rooms = [
       {
         name: 'Home Chat',
+        password: null,
         users: [],
         messages: []
       }
@@ -17,10 +18,11 @@ class Rooms {
     return this.rooms.find((room) => room.name === roomName);
   }
 
-  addRoom(roomName) {
+  addRoom(roomName, password) {
     if (!this.rooms.find((room) => room.name === roomName)) {
       this.rooms.push({
         name: roomName,
+        password: password,
         users: [],
         messages: []
       });

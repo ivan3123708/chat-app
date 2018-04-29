@@ -1,36 +1,50 @@
-.login-modal {
-  width: 90%;
-  max-width: 500px;
+.modal {
+  width: 300px;
   height: auto;
   margin: auto;
   margin-top: 100px;
+  color: #fff;
   background: $violet-gradient;
-  border-radius: 5px;
+  border-radius: 6px;
   outline: none;
 
   form {
-    width: 90%;
-    max-width: 450px;
+    width: 220px;
     margin: auto;
     text-align: center;
-    font-family: 'Muli';
     border: 1px solid transparent;
 
     h3 {
-      margin-bottom: 60px;
-      color: #fff;
+      margin: 15px auto 20px auto;
+    }
+
+    .error {
+      height: 20px;
+      margin: 20px auto;
+      color: $yellow;
+      text-align: center;
+    }
+
+    p {
+      margin: 5px auto;
+      font-size: 14px;
+      text-align: left;
     }
 
     input {
-      margin: 20px auto;
+      width: 220px;
+      margin: 0 auto 20px auto;
       background: transparent;
       color: #fff;
       font-size: 20px;
       font-family: 'Muli';
       font-weight: bold;
       border: none;
-      text-align: center;
       border-bottom: 1px solid #fff;
+    }
+
+    button {
+      margin: 15px auto;
     }
   }
 }

@@ -1,24 +1,38 @@
 import React from 'react';
 import CreateRoomModal from './CreateRoomModal';
+import PasswordModal from './PasswordModal';
 import Close from 'react-icons/lib/fa/angle-double-left';
 import Add from 'react-icons/lib/md/add-box';
 import Join from 'react-icons/lib/fa/sign-in';
-import Edit from 'react-icons/lib/fa/pencil';
 import Leave from 'react-icons/lib/fa/sign-out';
+import Lock from 'react-icons/lib/md/lock';
 import { socketEmit } from '../socketEvents';
 
 class Sidebar extends React.Component {
 
   state = {
-    createRoomModalOpen: false
+    createRoomModalOpen: false,
+    passwordModal: {
+      open: false,
+      roomName: null
+    }
   }
 
-  toggleModal = () => {
+  togglecreateRoomModal = () => {
     this.setState((prevState) => ({ createRoomModalOpen: !prevState.createRoomModalOpen }));
   }
 
-  joinRoom = (roomName) => {
-    socketEmit.joinRoom(roomName);
+  togglePasswordModal = (roomName) => {
+    this.setState((prevState) => ({ 
+      passwordModal: {
+        open: !prevState.passwordModal.open,
+        roomName
+      }
+    }));
+  }
+
+  joinRoom = (data) => {
+    socketEmit.joinRoom(data.roomName, data.password || null, (err) => console.log(err));
   }
 
   leaveRoom = (roomName) => {
@@ -44,10 +58,7 @@ class Sidebar extends React.Component {
             </div>
             <div>
               <p>{this.props.user && this.props.user.name}</p>
-              <button className="edit" title="Edit profile">
-                Edit
-                <Edit className="icon"/>
-              </button>
+              <button className="edit button-text" title="Edit profile">Edit</button>
             </div>
           </div>
           <div className="close">
@@ -59,7 +70,7 @@ class Sidebar extends React.Component {
         <div className="public-chats">
           <div className="panel">
             <p>Public Chats</p>
-            <button onClick={this.toggleModal} title="Create new room">
+            <button onClick={this.togglecreateRoomModal} title="Create new room">
               <Add className="icon" size="20px" />
             </button>
           </div>
@@ -71,9 +82,18 @@ class Sidebar extends React.Component {
                   <p className="primary" onClick={() => this.props.switchRoom(room.name)} title="Switch to this room">{room.name}</p>
                   <p className="secondary">{room.users.join(', ').slice(0, 30)}</p>
                 </div>
-                {room.name !== 'Home Chat' && (!this.props.user.rooms.includes(room.name) ? 
-                  <button onClick={() => this.joinRoom(room.name)} title="Join this room">
+                {room.name !== 'Home Chat' && !room.password && (!this.props.user.rooms.includes(room.name) ? 
+                  <button onClick={() => this.joinRoom({ roomName: room.name })} title="Join this room">
                     <Join className="icon" size="20px" />
+                  </button>
+                  :
+                  <button onClick={() => this.leaveRoom(room.name)} title="Leave this room">
+                    <Leave className="icon" size="20px" />
+                  </button>)
+                }
+                {room.password && (!this.props.user.rooms.includes(room.name) ? 
+                  <button onClick={() => this.togglePasswordModal(room.name)} title="Enter password to join this room">
+                    <Lock className="icon" size="20px" />
                   </button>
                   :
                   <button onClick={() => this.leaveRoom(room.name)} title="Leave this room">
@@ -97,7 +117,15 @@ class Sidebar extends React.Component {
             ))}
           </div>
         </div>
-        <CreateRoomModal isOpen={this.state.createRoomModalOpen} onRequestClose={this.toggleModal}/>
+        <CreateRoomModal 
+          isOpen={this.state.createRoomModalOpen} 
+          onRequestClose={this.togglecreateRoomModal}
+        />
+        <PasswordModal 
+          isOpen={this.state.passwordModal.open} 
+          onRequestClose={() => this.togglePasswordModal(this.state.passwordModal.roomName)} 
+          roomName={this.state.passwordModal.roomName}
+        />
       </div>
     )
   }
