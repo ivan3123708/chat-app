@@ -80,7 +80,7 @@ class Sidebar extends React.Component {
                 <img src={room.name === 'Home Chat' ? '/img/home_chat.png' : '/img/public_chat.png'} />
                 <div>
                   <p className="primary" onClick={() => this.props.user.rooms.includes(room.name) && this.props.switchRoom(room.name)} title="Switch to this room">{room.name}</p>
-                  <p className="secondary">{room.users.join(', ').slice(0, 30)}</p>
+                  <p className="secondary">{room.users.join(', ').slice(0, 24)}</p>
                 </div>
                 {room.name !== 'Home Chat' && !room.password && (!this.props.user.rooms.includes(room.name) ? 
                   <button onClick={() => this.joinRoom({ roomName: room.name })} title="Join this room">
@@ -112,7 +112,10 @@ class Sidebar extends React.Component {
             {this.props.users.map((user) => (
               <div className="list">
                 <img src={'/img/default_avatar.png'} />
-                <p className="primary">{user}</p>
+                <div>
+                  <p className="primary">{user.name}</p>
+                  <p className="secondary">{user.rooms.join(', ').slice(0, 24)}</p>
+                </div>
               </div>
             ))}
           </div>

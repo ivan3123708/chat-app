@@ -4,7 +4,7 @@ class Users {
   }
 
   getUsers() {
-    return this.users.map((user) => user.name);
+    return this.users;
   }
 
   getUser(id) {
