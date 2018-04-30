@@ -26,22 +26,21 @@
     word-break: break-all;
 
     .sender {
-      margin: 0 0 12px 0;
+      margin: 0 0 10px 0;
       color: $violet;
-      font-size: 14px;
-      font-weight: bold;
+      font: $font-xs-bold;
     }
 
     .text {
       margin: 0;
+      font: $font-m;
     }
 
     .time {
       float: right;
-      margin: 7px 0 0 0;
+      margin: 5px 0 0 0;
       color: $grey-text;
-      font-size: 12px;
-      font-style: italic;
+      font: $font-xs-italic;
     }
   }
 

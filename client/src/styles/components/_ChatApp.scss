@@ -43,13 +43,12 @@
         
         .room-name {
           margin: 10px auto 5px auto;
-          font-weight: bold;
+          font: $font-m-bold;
         }
 
         .room-users {
           margin: 0 auto 5px auto;
-          font-size: 12px;
-          font-style: italic;
+          font: $font-xs-italic;
         }
       }
     }

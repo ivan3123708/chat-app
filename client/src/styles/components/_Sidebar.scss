@@ -22,8 +22,7 @@
       p {
         margin: 15px;
         color: #fff;
-        font-size: 20px;
-        font-weight: bold;
+        font: $font-l-bold;
       }
 
       .edit {
@@ -59,7 +58,7 @@
 
     p {
       margin: 10px;
-      font-weight: bold;
+      font: $font-m-bold;
     }
 
     button {
@@ -87,17 +86,16 @@
       }
 
       .primary {
-        margin: auto 10px;
+        margin: 5px 10px 0 10px;
         color: #fff;
-        font-size: 18px;
+        font: $font-m;
         cursor: pointer;
       }
 
       .secondary {
         margin: 5px 10px;
         color: #fff;
-        font-size: 12px;
-        font-style: italic;
+        font: $font-xs-italic;
       }
 
       button {

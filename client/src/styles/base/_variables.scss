@@ -1,0 +1,27 @@
+// COLORS
+
+$violet: #6c65ac;
+$violet-light: #877ed8;
+$violet-gradient: linear-gradient(to bottom right, $violet 0%, $violet 40%, $violet-light 100%);
+$grey: #CFD8DC;
+$grey-dark: #a8a8a8;
+$grey-text: #949494;
+$blue-light: #a5cfd5;
+$yellow: #ffd752;
+$shadow: #00000094;
+$light-shadow: #00000052;
+
+// FONT SIZES
+
+$font-xs-italic: italic 12px 'Muli', sans-serif;
+$font-xs-bold: bold 12px 'Muli', sans-serif;
+$font-s: normal 14px 'Muli', sans-serif;
+$font-m: normal 16px 'Muli', sans-serif;
+$font-m-bold: bold 16px 'Muli', sans-serif;
+$font-l-bold: bold 18px 'Muli', sans-serif;
+
+// BREAKPOINTS
+
+$small: 320px;
+$medium: 768px;
+$large: 1024px;
