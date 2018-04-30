@@ -1,8 +1,11 @@
 @import './base/variables.scss';
+@import './base/mixins.scss';
 @import './base/classes.scss';
 @import './base/base.scss';
 @import './components/ChatApp.scss';
+@import './components/CreateRoomModal.scss';
+@import './components/LoginPage.scss';
 @import './components/Sidebar.scss';
 @import './components/Message.scss';
 @import './components/MyMessage.scss';
-@import './components/Modal.scss';
+@import './components/PasswordModal.scss'

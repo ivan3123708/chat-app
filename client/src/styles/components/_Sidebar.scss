@@ -1,6 +1,6 @@
 .sidebar {
   width: 300px;
-  background: $violet-gradient;
+  background: $violet-transparent;
   -webkit-transition: all .5s ease;
 	-moz-transition: all .5s ease;
 	transition: all .5s ease;
@@ -16,7 +16,6 @@
         max-height: 80px;
         margin: 10px;
         border-radius: 50%;
-        box-shadow: 0 5px 20px $light-shadow;
       }
 
       p {
@@ -39,67 +38,6 @@
 
       button {
         margin: 10px 5px;
-
-        .icon {
-          color: #fff;
-        }
-      }
-    }
-  }
-
-  @mixin panel {
-    display: flex;
-    justify-content: space-between;
-    height: 40px;
-    margin-bottom: 5px;
-    color: #fff;
-    box-shadow: 0 5px 20px $light-shadow;
-    border: 1px solid transparent;
-
-    p {
-      margin: 10px;
-      font: $font-m-bold;
-    }
-
-    button {
-      .icon {
-        margin: auto 10px;
-        color: #fff;
-      }
-    }
-  }
-
-  @mixin list {
-    height: 250px;
-    overflow: auto;
-
-    .list {
-      display: flex;
-      height: auto;
-      margin: auto 10px;
-      border-bottom: 1px solid $violet-light;
-
-      img {
-        max-height: 40px;
-        margin: 5px;
-        border-radius: 50%;
-      }
-
-      .primary {
-        margin: 5px 10px 0 10px;
-        color: #fff;
-        font: $font-m;
-        cursor: pointer;
-      }
-
-      .secondary {
-        margin: 5px 10px;
-        color: #fff;
-        font: $font-xs-italic;
-      }
-
-      button {
-        margin-left: auto;
 
         .icon {
           color: #fff;

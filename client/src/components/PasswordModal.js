@@ -31,7 +31,7 @@ class PasswordModal extends React.Component {
   render() {
     return (
       <Modal
-        className="modal"
+        className="password-modal"
         isOpen={this.props.isOpen}
         onRequestClose={this.props.onRequestClose}
       >

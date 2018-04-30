@@ -1,0 +1,111 @@
+@mixin modal {
+  width: 300px;
+  height: auto;
+  margin: auto;
+  margin-top: 100px;
+  color: #fff;
+  background: $violet-transparent;
+  border-radius: 6px;
+  outline: none;
+
+  form {
+    width: 220px;
+    margin: auto;
+    text-align: center;
+    border: 1px solid transparent;
+
+    h3 {
+      margin: 15px auto 20px auto;
+      font: $font-l-bold;
+    }
+
+    .error {
+      height: 20px;
+      margin: 20px auto;
+      color: $yellow;
+      font: $font-s;
+      text-align: center;
+    }
+
+    p {
+      margin: 5px auto;
+      font: $font-s;
+      text-align: left;
+    }
+
+    input {
+      width: 220px;
+      margin: 0 auto 20px auto;
+      background: transparent;
+      color: #fff;
+      font: $font-l-bold;
+      border: none;
+      border-bottom: 1px solid #fff;
+    }
+
+    button {
+      margin: 15px auto;
+    }
+  }
+}
+
+@mixin panel {
+  display: flex;
+    justify-content: space-between;
+    height: 40px;
+    margin-bottom: 5px;
+    background: $violet;
+    color: #fff;
+    border: 1px solid transparent;
+
+    p {
+      margin: 10px;
+      font: $font-m-bold;
+    }
+
+    button {
+      .icon {
+        margin: auto 10px;
+        color: #fff;
+      }
+    }
+}
+
+@mixin list {
+    height: 250px;
+    overflow: auto;
+
+    .list {
+      display: flex;
+      height: auto;
+      margin: auto 10px;
+      border-bottom: 1px solid $violet-light;
+
+      img {
+        max-height: 40px;
+        margin: 5px;
+        border-radius: 50%;
+      }
+
+      .primary {
+        margin: 5px 10px 0 10px;
+        color: #fff;
+        font: $font-m;
+        cursor: pointer;
+      }
+
+      .secondary {
+        margin: 5px 10px;
+        color: #fff;
+        font: $font-xs-italic;
+      }
+
+      button {
+        margin-left: auto;
+
+        .icon {
+          color: #fff;
+        }
+      }
+    }
+  }

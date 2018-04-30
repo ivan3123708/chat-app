@@ -29,7 +29,7 @@ class CreateRoomModal extends React.Component {
   render() {
     return (
       <Modal
-        className="modal"
+        className="create-room-modal"
         isOpen={this.props.isOpen}
         onRequestClose={this.props.onRequestClose}
       >

@@ -2,15 +2,15 @@
   @media (max-width: $medium) {
     position: fixed;
     left: -300px;
-    z-index: -1000;
+    z-index: -10;
   }
 }
 
 .open {
   position: fixed;
   left: 0;
-  z-index: 1000;
-  box-shadow: 10px 0 10px $shadow;
+  z-index: 10;
+  box-shadow: 7px 0 10px $shadow;
 }
 
 .button-text {

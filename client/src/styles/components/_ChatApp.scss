@@ -9,7 +9,7 @@
     width: 100%;
     height: 100vh;
     max-height: 100vh;
-    background: $grey;
+    background-image: url('img/pattern.png');
 
     @media (max-width: $medium) {
       width: 100%;
@@ -18,7 +18,7 @@
     .topbar {
       display: flex;
       height: 55px;
-      background: $violet-gradient;
+      background: $violet-transparent;
       color: #fff;
       text-align: center;
 
@@ -67,7 +67,7 @@
       height: 55px;
       padding: 0 20px;
       background: #fff;
-      box-shadow: 0 -1px 10px $light-shadow;
+      box-shadow: 0 -1px 10px $shadow-light;
 
       form {
         display: flex;
