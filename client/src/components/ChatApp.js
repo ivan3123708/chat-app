@@ -1,6 +1,6 @@
 import React from 'react';
 import { socketOn, socketEmit } from '../socketEvents';
-import LoginModal from './LoginModal';
+import LoginPage from './LoginPage';
 import Sidebar from './Sidebar';
 import Message from './Message';
 import MyMessage from './MyMessage';
@@ -16,8 +16,7 @@ class ChatApp extends React.Component {
       user: null,
       users: [],
       room: null,
-      rooms: [],
-      loginModalOpen: true
+      rooms: []
     };
 
     socketOn.updateUser((user) => {
@@ -50,10 +49,6 @@ class ChatApp extends React.Component {
     });
   }
 
-  closeLoginModal = () => {
-    this.setState({ loginModalOpen: false });
-  }
-
   sendMessage = (e) => {
     e.preventDefault();
 
@@ -79,46 +74,50 @@ class ChatApp extends React.Component {
     }
   }
 
-  render() {    
-    return (
-      <div className="chat-app">
-        <LoginModal isOpen={this.state.loginModalOpen} onRequestClose={this.closeLoginModal} />
-        <Sidebar 
-          user={this.state.user}
-          users={this.state.users} 
-          rooms={this.state.rooms} 
-          switchRoom={this.switchRoom}
-        />
-        <div className="chat-content">
-          <div className="topbar">
-            <div className="more">
-              <button onClick={this.openSidebar}>
-                <More className="icon" size="24px"/>
-              </button>
+  render() {
+    if (!this.state.user) {
+      return <LoginPage />
+    } else {
+      return (
+        <div className="chat-app">
+          
+          <Sidebar 
+            user={this.state.user}
+            users={this.state.users} 
+            rooms={this.state.rooms} 
+            switchRoom={this.switchRoom}
+          />
+          <div className="chat-content">
+            <div className="topbar">
+              <div className="more">
+                <button onClick={this.openSidebar}>
+                  <More className="icon" size="24px"/>
+                </button>
+              </div>
+              <div className="room-info">
+                <p className="room-name">{this.state.room && this.state.room}</p>
+                <p className="room-users">{this.state.room && this.state.rooms.find((room) => room.name === this.state.room).users.join(', ').slice(0, 30)}</p>
+              </div>
             </div>
-            <div className="room-info">
-              <p className="room-name">{this.state.room && this.state.room}</p>
-              <p className="room-users">{this.state.room && this.state.rooms.find((room) => room.name === this.state.room).users.join(', ').slice(0, 30)}</p>
+            <div className="messages">
+              {this.state.room && this.state.rooms.find((room) => room.name === this.state.room).messages.map((message) => {
+                if (message.sender === this.state.user.name) {
+                  return <MyMessage message={message} />
+                } else {
+                  return <Message message={message} />
+                }
+              })}
             </div>
-          </div>
-          <div className="messages">
-            {this.state.room && this.state.rooms.find((room) => room.name === this.state.room).messages.map((message) => {
-              if (message.sender === this.state.user.name) {
-                return <MyMessage message={message} />
-              } else {
-                return <Message message={message} />
-              }
-            })}
-          </div>
-          <div className="chat-input">
-            <form onSubmit={(e) => this.sendMessage(e)}>
-              <input type="text" name="text" placeholder="Write message..." spellCheck="false" autoFocus/>
-              <button><Send size="24px" /></button>
-            </form>
+            <div className="chat-input">
+              <form onSubmit={(e) => this.sendMessage(e)}>
+                <input type="text" name="text" placeholder="Write message..." spellCheck="false" autoFocus/>
+                <button><Send size="24px" /></button>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 
