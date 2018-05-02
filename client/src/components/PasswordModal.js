@@ -39,7 +39,7 @@ class PasswordModal extends React.Component {
           <h3>Join Room</h3>
           <p className="error">{this.state.error}</p>
           <p>Password</p>
-          <input type="password" name="password" autoFocus />
+          <input type="password" name="password" autoFocus autoComplete="off" />
           <button type="submit" className="button-text">Join</button>
         </form>
       </Modal>

@@ -19,8 +19,6 @@ class LoginPage extends React.Component {
     socketEmit.joinUser(userName);
     
     e.target.elements.userName.value = '';
-
-    this.props.onRequestClose();
   }
 
   render() {
@@ -31,7 +29,7 @@ class LoginPage extends React.Component {
             <h3>Join Chat</h3>
             <p className="error">{this.state.error}</p>
             <p>Username</p>
-            <input type="text" name="userName" autoFocus />
+            <input type="text" name="userName" maxLength="20" autoFocus autoComplete="off" />
             <button type="submit" className="button-text">Join</button>
           </form>
         </div>

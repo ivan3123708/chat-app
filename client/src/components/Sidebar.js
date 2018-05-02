@@ -1,7 +1,7 @@
 import React from 'react';
 import CreateRoomModal from './CreateRoomModal';
 import PasswordModal from './PasswordModal';
-import Close from 'react-icons/lib/fa/angle-double-left';
+import Close from 'react-icons/lib/md/close';
 import Add from 'react-icons/lib/md/add-box';
 import Join from 'react-icons/lib/fa/sign-in';
 import Leave from 'react-icons/lib/fa/sign-out';
@@ -18,7 +18,7 @@ class Sidebar extends React.Component {
     }
   }
 
-  togglecreateRoomModal = () => {
+  toggleCreateRoomModal = () => {
     this.setState((prevState) => ({ createRoomModalOpen: !prevState.createRoomModalOpen }));
   }
 
@@ -70,7 +70,7 @@ class Sidebar extends React.Component {
         <div className="public-chats">
           <div className="panel">
             <p>Public Chats</p>
-            <button onClick={this.togglecreateRoomModal} title="Create new room">
+            <button onClick={this.toggleCreateRoomModal} title="Create new room">
               <Add className="icon" size="20px" />
             </button>
           </div>
@@ -80,7 +80,7 @@ class Sidebar extends React.Component {
                 <img src={room.name === 'Home Chat' ? '/img/home_chat.png' : '/img/public_chat.png'} />
                 <div>
                   <p className="primary" onClick={() => this.props.user.rooms.includes(room.name) && this.props.switchRoom(room.name)} title="Switch to this room">{room.name}</p>
-                  <p className="secondary">{room.users.join(', ').slice(0, 24)}</p>
+                  <p className="secondary">{room.users.join(', ').length > 25 ? room.users.join(', ').slice(0, 25) + '...' : room.users.join(', ')}</p>
                 </div>
                 {room.name !== 'Home Chat' && !room.password && (!this.props.user.rooms.includes(room.name) ? 
                   <button onClick={() => this.joinRoom({ roomName: room.name })} title="Join this room">
@@ -114,7 +114,7 @@ class Sidebar extends React.Component {
                 <img src={'/img/default_avatar.png'} />
                 <div>
                   <p className="primary">{user.name}</p>
-                  <p className="secondary">{user.rooms.join(', ').slice(0, 24)}</p>
+                  <p className="secondary">{user.rooms.join(', ').length > 25 ? user.rooms.join(', ').slice(0, 25) + '...' : user.rooms.join(', ')}</p>
                 </div>
               </div>
             ))}
@@ -122,7 +122,7 @@ class Sidebar extends React.Component {
         </div>
         <CreateRoomModal 
           isOpen={this.state.createRoomModalOpen} 
-          onRequestClose={this.togglecreateRoomModal}
+          onRequestClose={this.toggleCreateRoomModal}
         />
         <PasswordModal 
           isOpen={this.state.passwordModal.open} 

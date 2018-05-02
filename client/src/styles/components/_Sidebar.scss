@@ -1,5 +1,6 @@
 .sidebar {
-  width: 300px;
+  min-width: 300px;
+  max-width: 300px;
   background: $violet-transparent;
   -webkit-transition: all .5s ease;
 	-moz-transition: all .5s ease;

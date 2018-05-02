@@ -17,7 +17,7 @@
     text-align: right;
     background: $blue-transparent;
     border-radius: 6px;
-    word-break: break-all;
+    overflow: hidden;
 
     .sender {
       margin: 0 0 10px 0;

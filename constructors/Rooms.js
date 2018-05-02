@@ -30,7 +30,13 @@ class Rooms {
   }
 
   removeRoom(roomName) {
-    this.rooms = this.rooms.filter((room) => room.name !== roomName);
+    this.rooms = this.rooms.filter((room) => {
+      if (roomName !== 'Home Chat') {
+        return room.name !== roomName;
+      } else {
+        return room;
+      }
+    });
   }
 
   addUser(userName, roomName) {
