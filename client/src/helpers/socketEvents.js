@@ -26,8 +26,8 @@ const socketOn = {
 };
 
 const socketEmit = {
-  joinUser: (userName) => {
-    socket.emit('joinUser', userName);
+  joinUser: (userName, callback) => {
+    socket.emit('joinUser', userName, (err) => callback(err));
   },
   joinRoom: (roomName, password, callback) => {
     socket.emit('joinRoom', { roomName, password }, (err) => callback(err));

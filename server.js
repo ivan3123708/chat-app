@@ -18,8 +18,13 @@ app.use(express.static(publicPath));
 
 io.on('connection', (socket) => {
 
-  socket.on('joinUser', (userName) => {
-    users.addUser(socket.id, userName);
+  socket.on('joinUser', (userName, callback) => {
+    const err = users.addUser(socket.id, userName);
+
+    if (err) {
+      return callback(err);
+    }
+
     rooms.addUser(userName, 'Home Chat');
 
     socket.join('Home Chat');

@@ -16,7 +16,9 @@ class LoginPage extends React.Component {
       return this.setState({ error: 'You must enter username' });
     };
     
-    socketEmit.joinUser(userName);
+    socketEmit.joinUser(userName, (err) => {
+      this.setState({ error: err });
+    });
     
     e.target.elements.userName.value = '';
   }

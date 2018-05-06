@@ -12,11 +12,15 @@ class Users {
   }
 
   addUser(id, name) {
-    this.users.push({
-      id: id,
-      name: name,
-      rooms: ['Home Chat']
-    });
+    if (this.users.find((user) => user.name === name)) {
+      return 'Username taken';
+    } else {
+      this.users.push({
+        id: id,
+        name: name,
+        rooms: ['Home Chat']
+      });
+    }
   }
 
   removeUser(id) {
