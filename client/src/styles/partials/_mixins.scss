@@ -47,54 +47,54 @@
 
 @mixin panel {
   display: flex;
-    justify-content: space-between;
-    height: 40px;
-    margin-bottom: 5px;
-    border: 1px solid transparent;
+  justify-content: space-between;
+  height: 40px;
+  margin-bottom: 5px;
+  border: 1px solid transparent;
 
-    p {
-      margin: 10px;
-      font: $font-m-bold;
-    }
+  p {
+    margin: 10px;
+    font: $font-m-bold;
+  }
 
-    button {
-      .icon {
-        margin: auto 10px;
-      }
+  button {
+    .icon {
+      margin: auto 10px;
     }
+  }
 }
 
 @mixin list {
-    height: 250px;
-    overflow: auto;
+  max-height: 200px;
+  overflow: auto;
 
-    .list {
-      display: flex;
-      height: auto;
-      margin: auto 10px;
+  .list {
+    display: flex;
+    height: auto;
+    margin: auto 10px;
 
-      img {
-        max-height: 40px;
-        margin: 5px;
-        border-radius: 50%;
-      }
+    img {
+      max-height: 40px;
+      margin: 5px;
+      border-radius: 50%;
+    }
 
-      .primary {
-        margin: 5px 10px 0 10px;
-        font: $font-m;
-        cursor: pointer;
-      }
+    .primary {
+      margin: 5px 10px 0 10px;
+      font: $font-m;
+      cursor: pointer;
+    }
 
-      .secondary {
-        margin: 5px 10px;
-        font: $font-xs-italic;
-      }
+    .secondary {
+      margin: 5px 10px;
+      font: $font-xs-italic;
+    }
 
-      button {
-        margin-left: auto;
-      }
+    button {
+      margin-left: auto;
     }
   }
+}
 
 @mixin tiles {
   display: flex;

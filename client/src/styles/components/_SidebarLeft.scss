@@ -1,6 +1,7 @@
 .sidebar-left {
   min-width: 300px;
   max-width: 300px;
+  min-height: 100vh;
   -webkit-transition: all .5s ease;
 	-moz-transition: all .5s ease;
   transition: all .5s ease;
@@ -8,12 +9,13 @@
   .profile {
     display: flex;
     justify-content: space-between;
+    height: 90px;
 
     .left {
       display: flex;
 
       img {
-        max-height: 80px;
+        max-height: 70px;
         margin: 10px;
         border-radius: 50%;
       }
