@@ -6,9 +6,9 @@ import Add from 'react-icons/lib/md/add-box';
 import Join from 'react-icons/lib/fa/sign-in';
 import Leave from 'react-icons/lib/fa/sign-out';
 import Lock from 'react-icons/lib/md/lock';
-import { socketEmit } from '../socketEvents';
+import { socketEmit } from '../helpers/socketEvents';
 
-class Sidebar extends React.Component {
+class SidebarLeft extends React.Component {
 
   state = {
     createRoomModalOpen: false,
@@ -40,17 +40,17 @@ class Sidebar extends React.Component {
   }
 
   closeSidebar = () => {
-    const sidebar = document.getElementsByClassName('sidebar')[0];
+    const sidebar = document.getElementsByClassName('sidebar-left')[0];
 
-    if (sidebar.className.match(/(?:^|\s)open(?!\S)/)) {
-      sidebar.classList.remove('open');
-      sidebar.classList.add('closed');
+    if (sidebar.className.match(/(?:^|\s)sidebar-left-open(?!\S)/)) {
+      sidebar.classList.remove('sidebar-left-open');
+      sidebar.classList.add('sidebar-left-closed');
     }
   }
 
   render() {
     return (
-      <div className="sidebar closed">
+      <div className="sidebar-left sidebar-left-closed">
         <div className="profile">
           <div className="left">
             <div>
@@ -134,4 +134,4 @@ class Sidebar extends React.Component {
   }
 };
 
-export default Sidebar;
+export default SidebarLeft;

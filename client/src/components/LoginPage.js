@@ -1,5 +1,5 @@
 import React from 'react';
-import { socketEmit } from '../socketEvents';
+import { socketEmit } from '../helpers/socketEvents';
 
 class LoginPage extends React.Component {
 

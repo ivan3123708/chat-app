@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
-import { socketEmit } from '../socketEvents';
+import { socketEmit } from '../helpers/socketEvents';
 
 class CreateRoomModal extends React.Component {
 

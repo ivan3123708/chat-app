@@ -3,8 +3,6 @@
   height: auto;
   margin: auto;
   margin-top: 100px;
-  color: #fff;
-  background: $violet-transparent;
   border-radius: 6px;
   outline: none;
 
@@ -22,7 +20,6 @@
     .error {
       height: 20px;
       margin: 20px auto;
-      color: $yellow;
       font: $font-s;
       text-align: center;
     }
@@ -37,7 +34,6 @@
       width: 220px;
       margin: 0 auto 20px auto;
       background: transparent;
-      color: #fff;
       font: $font-l-bold;
       border: none;
       border-bottom: 1px solid #fff;
@@ -54,8 +50,6 @@
     justify-content: space-between;
     height: 40px;
     margin-bottom: 5px;
-    background: $violet;
-    color: #fff;
     border: 1px solid transparent;
 
     p {
@@ -66,7 +60,6 @@
     button {
       .icon {
         margin: auto 10px;
-        color: #fff;
       }
     }
 }
@@ -79,7 +72,6 @@
       display: flex;
       height: auto;
       margin: auto 10px;
-      border-bottom: 1px solid $violet-light;
 
       img {
         max-height: 40px;
@@ -89,23 +81,31 @@
 
       .primary {
         margin: 5px 10px 0 10px;
-        color: #fff;
         font: $font-m;
         cursor: pointer;
       }
 
       .secondary {
         margin: 5px 10px;
-        color: #fff;
         font: $font-xs-italic;
       }
 
       button {
         margin-left: auto;
-
-        .icon {
-          color: #fff;
-        }
       }
     }
   }
+
+@mixin tiles {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 5px;
+
+  div, img {
+    width: 46px;
+    height: 46px;
+    margin: 5px;
+    border: 1px solid #fff;
+    cursor: pointer;
+  }
+}

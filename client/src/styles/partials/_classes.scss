@@ -1,0 +1,35 @@
+.sidebar-left-closed {
+  @media (max-width: $medium) {
+    position: fixed;
+    left: -300px;
+    z-index: -10;
+  }
+}
+
+.sidebar-left-open {
+  position: fixed;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 4px 0 15px $shadow;
+}
+
+.sidebar-right-closed {
+  position: fixed;
+  right: -300px;
+  z-index: -10;
+}
+
+.sidebar-right-open {
+  position: fixed;
+  right: 0;
+  z-index: 1000;
+  box-shadow: -4px 0 15px $shadow;
+}
+
+.button-text {
+  padding: 0 20px 1px 20px;
+  color: #fff;
+  font: $font-s;
+  border: 1px solid #fff;
+  border-radius: 3px;
+}

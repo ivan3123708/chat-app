@@ -1,0 +1,24 @@
+*:focus {
+    outline: none;
+}
+
+body {
+  margin: 0;
+  font: $font-m;
+}
+
+button {
+  background: transparent;
+  border: none;
+  font-family: 'Muli', sans-serif;
+  cursor: pointer;
+}
+
+.ReactModalPortal .ReactModal__Overlay--after-open {
+  background: #eeeeeea2 !important;
+  z-index: 2000;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}

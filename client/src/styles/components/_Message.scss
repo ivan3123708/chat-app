@@ -10,6 +10,8 @@
   img {
     max-height: 50px;
     margin: 5px;
+    border-radius: 50%;
+    box-shadow: 1px 1px 3px #808080ab;
 
     @media (max-width: $medium) {
       max-height: 40px;
@@ -21,13 +23,12 @@
     height: auto;
     margin: 5px;
     padding: 5px 10px;
-    background: $white-transparent;
     border-radius: 6px;
+    box-shadow: 1px 1px 3px #8080808c;
     overflow: hidden;
 
     .sender {
       margin: 0 0 10px 0;
-      color: $violet;
       font: $font-xs-bold;
     }
 
@@ -39,7 +40,6 @@
     .time {
       float: right;
       margin: 5px 0 0 0;
-      color: $grey-text;
       font: $font-xs-italic;
     }
   }

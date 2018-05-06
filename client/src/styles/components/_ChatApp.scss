@@ -9,7 +9,10 @@
     width: 100%;
     height: 100vh;
     max-height: 100vh;
-    background-image: url('img/pattern.png');
+    background-image: url('/img/triangles.png');
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    transition: all .5s ease;
 
     @media (max-width: $medium) {
       width: 100%;
@@ -18,8 +21,6 @@
     .topbar {
       display: flex;
       height: 55px;
-      background: $violet-transparent;
-      color: #fff;
       text-align: center;
 
       .more {
@@ -31,10 +32,6 @@
 
         button {
           margin: 14px 0 0 10px;
-
-          .icon {
-            color: #fff;
-          }
         }
       }
       
@@ -49,6 +46,13 @@
         .room-users {
           margin: 0 auto 5px auto;
           font: $font-xs-italic;
+        }
+      }
+
+      .themes {
+
+        button {
+          margin: 13px 8px 0 0;
         }
       }
     }
@@ -75,7 +79,7 @@
         margin-top: 10px;
         background: #fff;
         border-radius: 6px;
-        border: 1px solid $grey-dark;
+        border: 1px solid transparent;
 
         input {
           width: 90%;
@@ -84,10 +88,6 @@
           font-family: 'Muli', sans-serif;
           border: none;
           border-radius: 10px;
-        }
-
-        button {
-          color: $violet;
         }
       }
     }

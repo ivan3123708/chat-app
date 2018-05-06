@@ -1,6 +1,13 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+const index = new ExtractTextPlugin('index.css');
+const violet = new ExtractTextPlugin('violet.css');
+const light = new ExtractTextPlugin('light.css');
+const dark = new ExtractTextPlugin('dark.css');
+const pink = new ExtractTextPlugin('pink.css');
+const green = new ExtractTextPlugin('green.css');
+
 module.exports = {
   entry: './src/index.js',
   output: {
@@ -21,20 +28,56 @@ module.exports = {
         }
       },
       {
-        test: /\.s?css$/,
-        use: ExtractTextPlugin.extract({
+        test: /index.scss/,
+        use: index.extract({
           fallback: 'style-loader',
           use: ['css-loader', 'sass-loader']
         })
       },
       {
-        test: /\.(png|jpg|gif)$/,
-        loader: 'url-loader'
+        test: /violet.scss/,
+        use: violet.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'sass-loader']
+        })
+      },
+      {
+        test: /light.scss/,
+        use: light.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'sass-loader']
+        })
+      },
+      {
+        test: /dark.scss/,
+        use: dark.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'sass-loader']
+        })
+      },
+      {
+        test: /pink.scss/,
+        use: pink.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'sass-loader']
+        })
+      },
+      {
+        test: /green.scss/,
+        use: green.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'sass-loader']
+        })
       }
     ]
   },
   plugins: [
-    new ExtractTextPlugin('styles.css')
+    index,
+    violet,
+    light,
+    dark,
+    pink,
+    green
   ],
   devtool: 'source-map',
   devServer: {

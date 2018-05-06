@@ -1,0 +1,222 @@
+@mixin theme(
+  $primary,
+  $primary-transparent,
+  $primary-light,
+  $secondary,
+  $input-outline,
+  $icon,
+  $send-icon,
+  $error,
+  $my-message,
+  $message,
+  $sender,
+  $message-text,
+  $message-time,
+  $scroll-track,
+  $scroll-thumb
+) {
+
+  ::-webkit-scrollbar-track {
+      background: $scroll-track; 
+  }
+
+  ::-webkit-scrollbar-thumb {
+      background: $scroll-thumb; 
+  }
+
+  .button-text {
+    color: $secondary;
+    border-color: $secondary;
+  }
+
+  .chat-app {
+    .sidebar-left {
+      background: $primary-transparent;
+      color: $secondary;
+
+      .profile {
+        .close {
+          .icon {
+            color: $icon;
+          }
+        }
+      }
+
+      .public-chats {
+        .panel {
+          background: $primary;
+          color: $secondary;
+
+          .icon {
+            color: $icon;
+          }
+        }
+
+        .public-chats-list {
+          .list {
+            border-color: $primary-light;
+
+            .icon {
+              color: $icon;
+            }
+          }
+        }
+      }
+
+      .users {
+        .panel {
+          background: $primary;
+          color: $secondary;
+        }
+
+        .users-list {
+          .list {
+            border-color: $primary-light;
+          }
+        }
+      }
+    }
+
+    .chat-content {
+      .topbar {
+        background: $primary;
+        color: $secondary;
+
+        .more {
+          button {
+            .icon {
+              color: $icon;
+            }
+          }
+        }
+
+        .themes {
+          button {
+            .icon {
+              color: $icon;
+            }
+          }
+        }
+      }
+
+      .messages {
+        .my-message {
+          .message-content, .message-content-consecutive {
+            background: $my-message;
+
+            .sender {
+              color: $sender;
+            }
+
+            .time {
+              color: $message-time
+            }
+          }
+        }
+
+        .message {
+          .message-content, .message-content-consecutive {
+            background: $message;
+
+            .sender {
+              color: $sender;
+            }
+
+            .time {
+              color: $message-time
+            }
+          }
+        }
+      }
+
+      .chat-input {
+        form {
+          border-color: $input-outline;
+
+          button {
+            .send-icon {
+              color: $send-icon;
+            }
+          }
+        }
+      }
+    }
+
+    .sidebar-right {
+      background: $primary-transparent;
+      color: $secondary;
+
+      .close {
+        button {
+          .icon {
+            color: $icon;
+          }
+        }
+      }
+
+      .themes {
+        .panel {
+          background: $primary;
+          color: $secondary;
+        }
+      }
+
+      .backgrounds {
+        .panel {
+          background: $primary;
+          color: $secondary;
+        }
+      }
+    }
+  }
+
+  .create-room-modal {
+    background: $primary;
+    color: $secondary;
+
+    form {
+      .error {
+        color: $error;
+      }
+
+      input {
+        color: $secondary;
+        border-color: $secondary;
+      }
+    }
+  }
+
+  .password-modal {
+    background: $primary;
+    color: $secondary;
+
+    form {
+      .error {
+        color: $error;
+      }
+
+      input {
+        color: $secondary;
+        border-color: $secondary;
+      }
+    }
+  }
+
+  .login-page {
+    .login-modal {
+      background: $primary;
+      color: $secondary;
+
+      form {
+        .error {
+          color: $error;
+        }
+
+        input {
+          color: $secondary;
+          border-color: $secondary;
+        }
+      }
+    }
+  }
+}
