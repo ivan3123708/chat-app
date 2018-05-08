@@ -1,0 +1,18 @@
+.avatar-modal {
+  @include modal;
+
+  img {
+    min-width: 100px;
+    max-width: 100px;
+    min-height: 100px;
+    max-height: 100px;
+    margin: 0 auto 30px auto;
+    border-radius: 50%;
+  }
+
+  form {
+    input {
+      font: $font-s;
+    }
+  }
+}

@@ -170,7 +170,7 @@
     }
   }
 
-  .create-room-modal {
+  .avatar-modal, .create-room-modal, .password-modal, .login-modal {
     background: $primary;
     color: $secondary;
 
@@ -182,40 +182,6 @@
       input {
         color: $secondary;
         border-color: $secondary;
-      }
-    }
-  }
-
-  .password-modal {
-    background: $primary;
-    color: $secondary;
-
-    form {
-      .error {
-        color: $error;
-      }
-
-      input {
-        color: $secondary;
-        border-color: $secondary;
-      }
-    }
-  }
-
-  .login-page {
-    .login-modal {
-      background: $primary;
-      color: $secondary;
-
-      form {
-        .error {
-          color: $error;
-        }
-
-        input {
-          color: $secondary;
-          border-color: $secondary;
-        }
       }
     }
   }

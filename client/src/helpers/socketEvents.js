@@ -37,6 +37,9 @@ const socketEmit = {
   },
   clientMessage: (text, roomName) => {
     socket.emit('clientMessage', { text, roomName });
+  },
+  getAvatar: () => {
+    socket.emit('getAvatar');
   }
 };
 

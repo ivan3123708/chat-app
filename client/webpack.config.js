@@ -82,6 +82,10 @@ module.exports = {
   devtool: 'source-map',
   devServer: {
     contentBase: path.join(__dirname, 'public'),
-    publicPath: '/dist'
+    publicPath: '/dist',
+    proxy: [{
+      context: ['/api/*'],
+      target: "http://localhost:3000",
+    }]
   }
 }

@@ -18,9 +18,14 @@ class Users {
       this.users.push({
         id: id,
         name: name,
+        avatar: '/img/default_avatar.png',
         rooms: ['Home Chat']
       });
     }
+  }
+
+  updateAvatar(id, avatar) {
+    this.users.find((user) => user.id === id).avatar = `/img/avatars/${avatar}`;
   }
 
   removeUser(id) {

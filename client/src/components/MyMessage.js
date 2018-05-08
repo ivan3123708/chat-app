@@ -5,11 +5,11 @@ const MyMessage = (props) => {
     return (
       <div className="my-message">
         <div className="message-content">
-          <p className="sender">{props.message.sender}</p>
+          <p className="sender">{props.message.sender.name}</p>
           <p className="text">{props.message.text}</p>
           <p className="time">{props.message.time}</p>
         </div>
-        <img src={'/img/default_avatar.png'} />
+        <img src={props.message.sender.avatar} />
       </div>
     );
   } else {

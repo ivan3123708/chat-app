@@ -1,4 +1,5 @@
 import React from 'react';
+import AvatarModal from './AvatarModal';
 import CreateRoomModal from './CreateRoomModal';
 import PasswordModal from './PasswordModal';
 import Close from 'react-icons/lib/md/close';
@@ -11,11 +12,16 @@ import { socketEmit } from '../helpers/socketEvents';
 class SidebarLeft extends React.Component {
 
   state = {
+    avatarModalOpen: false,
     createRoomModalOpen: false,
     passwordModal: {
       open: false,
       roomName: null
     }
+  }
+
+  toggleAvatarModal = () => {
+    this.setState((prevState) => ({ avatarModalOpen: !prevState.avatarModalOpen }));
   }
 
   toggleCreateRoomModal = () => {
@@ -54,11 +60,11 @@ class SidebarLeft extends React.Component {
         <div className="profile">
           <div className="left">
             <div>
-              <img src={'/img/default_avatar.png'} />
+              <img src={this.props.user.avatar}/>
             </div>
             <div>
               <p>{this.props.user && this.props.user.name}</p>
-              <button className="edit button-text" title="Edit profile">Edit</button>
+              <button className="edit button-text" title="Edit profile" onClick={this.toggleAvatarModal}>Edit</button>
             </div>
           </div>
           <div className="close">
@@ -111,7 +117,7 @@ class SidebarLeft extends React.Component {
           <div className="users-list">
             {this.props.users.map((user) => (
               <div className="list">
-                <img src={'/img/default_avatar.png'} />
+                <img src={user.avatar} />
                 <div>
                   <p className="primary">{user.name}</p>
                   <p className="secondary">{user.rooms.join(', ').length > 25 ? user.rooms.join(', ').slice(0, 25) + '...' : user.rooms.join(', ')}</p>
@@ -120,6 +126,11 @@ class SidebarLeft extends React.Component {
             ))}
           </div>
         </div>
+        <AvatarModal
+          isOpen={this.state.avatarModalOpen}
+          onRequestClose={this.toggleAvatarModal}
+          user={this.props.user}
+        />
         <CreateRoomModal 
           isOpen={this.state.createRoomModalOpen} 
           onRequestClose={this.toggleCreateRoomModal}

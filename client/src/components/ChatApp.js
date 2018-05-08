@@ -131,7 +131,7 @@ class ChatApp extends React.Component {
             </div>
             <div className="messages">
               {this.state.room && currentRoom.messages.map((message) => {
-                if (message.sender === this.state.user.name) {
+                if (message.sender.name === this.state.user.name) {
                   return <MyMessage message={message} />
                 } else {
                   return <Message message={message} />

@@ -2,6 +2,7 @@ const http = require('http');
 const path = require('path');
 const express = require('express');
 const socketIO = require('socket.io');
+const multer = require('multer');
 const moment = require('moment');
 const { Users } = require('./constructors/Users');
 const { Rooms } = require('./constructors/Rooms');
@@ -15,6 +16,37 @@ const users = new Users();
 const rooms = new Rooms();
 
 app.use(express.static(publicPath));
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, './client/public/img/avatars');
+  },
+  filename: (req, file, cb) => {
+    cb(null, new Date().toISOString() + file.originalname);
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' || file.mimetype === 'image/gif') {
+    cb(null, true);
+  } else {
+    cb(new Error('Unsupported file format'), false);
+  }
+}
+
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5
+  },
+  fileFilter: fileFilter
+});
+
+app.post('/api/avatar', upload.single('avatar'), (req, res) => {
+  users.updateAvatar(req.body.id, req.file.filename);
+
+  res.send(req.file);
+});
 
 io.on('connection', (socket) => {
 
@@ -77,7 +109,7 @@ io.on('connection', (socket) => {
   socket.on('clientMessage', (data) => {
     const room = rooms.getRoom(data.roomName);
     const message = {
-      sender: users.getUser(socket.id).name,
+      sender: users.getUser(socket.id),
       text: data.text,
       time: moment().format('HH:mm')
     }
@@ -90,6 +122,13 @@ io.on('connection', (socket) => {
 
     io.emit('updateRooms', rooms.getRooms());
   });
+
+  socket.on('getAvatar', () => {
+    io.emit('updateUsers', users.getUsers());
+    socket.emit('updateUser', users.getUser(socket.id));
+    socket.emit('updateRoom', rooms.getRoom(socket.room));
+    io.emit('updateRooms', rooms.getRooms());
+  })
 
   socket.on('disconnect', () => {
     const user = users.getUser(socket.id);
