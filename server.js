@@ -124,7 +124,6 @@ io.on('connection', (socket) => {
   });
 
   socket.on('getAvatar', () => {
-    // socket.emit('updateRoom', rooms.getRoom(socket.room));
     io.emit('updateUsers', users.getUsers());
     socket.emit('updateUser', users.getUser(socket.id));
     io.emit('updateRooms', rooms.getRooms());
