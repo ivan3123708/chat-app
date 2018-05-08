@@ -34,20 +34,7 @@ class ChatApp extends React.Component {
     });
 
     socketOn.updateRooms((rooms) => {
-      const messages = document.getElementsByClassName('messages')[0];
-
-      const prevMessageHeight = messages.lastChild ? messages.lastChild.offsetHeight : 0;
-
       this.setState({ rooms: rooms });
-
-      const clientHeight = messages.clientHeight;
-      const scrollHeight = messages.scrollHeight;
-      const scrollTop = messages.scrollTop;
-      const newMessageHeight = messages.lastChild.offsetHeight;
-
-      if (clientHeight + scrollTop + newMessageHeight + prevMessageHeight >= scrollHeight) {
-        messages.scrollTop = scrollHeight;
-      }
     });
   }
 
@@ -67,33 +54,38 @@ class ChatApp extends React.Component {
     this.setState({ room: room });
   }
 
-  openSidebarLeft = () => {
+  openSidebar = (side) => {
     const sidebarLeft = document.getElementsByClassName('sidebar-left')[0];
     const sidebarRight = document.getElementsByClassName('sidebar-right')[0];
 
-    if (sidebarRight.className.match(/(?:^|\s)sidebar-right-open(?!\S)/)) {
-      sidebarRight.classList.remove('sidebar-right-open');
-      sidebarRight.classList.add('sidebar-right-closed');
-    }
+    if (side === 'left') {
+      if (sidebarRight.className.match(/(?:^|\s)sidebar-right-open(?!\S)/)) {
+        sidebarRight.classList.remove('sidebar-right-open');
+        sidebarRight.classList.add('sidebar-right-closed');
+      }
 
-    if (sidebarLeft.className.match(/(?:^|\s)sidebar-left-closed(?!\S)/)) {
-      sidebarLeft.classList.remove('sidebar-left-closed');
-      sidebarLeft.classList.add('sidebar-left-open');
+      if (sidebarLeft.className.match(/(?:^|\s)sidebar-left-closed(?!\S)/)) {
+        sidebarLeft.classList.remove('sidebar-left-closed');
+        sidebarLeft.classList.add('sidebar-left-open');
+      }
+    } else if (side === 'right') {
+      if (sidebarLeft.className.match(/(?:^|\s)sidebar-left-open(?!\S)/)) {
+        sidebarLeft.classList.remove('sidebar-left-open');
+        sidebarLeft.classList.add('sidebar-left-closed');
+      }
+
+      if (sidebarRight.className.match(/(?:^|\s)sidebar-right-closed(?!\S)/)) {
+        sidebarRight.classList.remove('sidebar-right-closed');
+        sidebarRight.classList.add('sidebar-right-open');
+      }
     }
   }
 
-  openSidebarRight = () => {
-    const sidebarRight = document.getElementsByClassName('sidebar-right')[0];
-    const sidebarLeft = document.getElementsByClassName('sidebar-left')[0];
+  componentDidUpdate() {
+    const messages = document.getElementsByClassName('messages')[0];
 
-    if (sidebarLeft.className.match(/(?:^|\s)sidebar-left-open(?!\S)/)) {
-      sidebarLeft.classList.remove('sidebar-left-open');
-      sidebarLeft.classList.add('sidebar-left-closed');
-    }
-
-    if (sidebarRight.className.match(/(?:^|\s)sidebar-right-closed(?!\S)/)) {
-      sidebarRight.classList.remove('sidebar-right-closed');
-      sidebarRight.classList.add('sidebar-right-open');
+    if (messages) {
+      messages.scrollTop = messages.scrollHeight;
     }
   }
 
@@ -115,7 +107,7 @@ class ChatApp extends React.Component {
           <div className="chat-content">
             <div className="topbar">
               <div className="more">
-                <button onClick={this.openSidebarLeft} title="Show public chats & online users">
+                <button onClick={() => this.openSidebar('left')} title="Show public chats & online users">
                   <More className="icon" size="22px"/>
                 </button>
               </div>
@@ -124,7 +116,7 @@ class ChatApp extends React.Component {
                 <p className="room-users">{this.state.room && (currentRoom.users.join(', ').length > 30 ? currentRoom.users.join(', ').slice(0, 30) + '...' : currentRoom.users.join(', '))}</p>
               </div>
               <div className="themes">
-                <button onClick={this.openSidebarRight} title="Change theme & background">
+                <button onClick={() => this.openSidebar('right')} title="Change theme & background">
                   <Palette className="icon" size="24px" />
                 </button>
               </div>

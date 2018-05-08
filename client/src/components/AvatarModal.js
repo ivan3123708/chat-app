@@ -41,7 +41,7 @@ class AvatarModal extends React.Component {
       this.props.onRequestClose();
     })
     .catch((err) => {
-      this.setState({ error: 'Only .jpg, .png and .gif, < 5MB' });
+      this.setState({ error: 'Only .jpg, .png or .gif, < 5MB' });
     });
   }
 

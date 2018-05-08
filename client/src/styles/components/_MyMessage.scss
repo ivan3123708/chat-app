@@ -55,6 +55,9 @@
     box-shadow: 1px 1px 3px #808080ab;
 
     @media (max-width: $medium) {
+      min-width: 40px;
+      max-width: 40px;
+      min-height: 40px;
       max-height: 40px;
     }
   }

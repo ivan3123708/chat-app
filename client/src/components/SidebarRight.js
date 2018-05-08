@@ -61,11 +61,11 @@ class SidebarRight extends React.Component {
             <p>Choose Background</p>
           </div>
           <div className="images">
-            <img className="triangles" src={'/img/triangles.png'} onClick={this.changeBackground} />
-            <img className="christmas" src={'/img/christmas.png'} onClick={this.changeBackground} />
             <img className="sun" src={'/img/sun.png'} onClick={this.changeBackground} />
-            <img className="triangular" src={'/img/triangular.png'} onClick={this.changeBackground} />
-            <img className="triangles_black" src={'/img/triangles_black.png'} onClick={this.changeBackground} />
+            <img className="triangular_white" src={'/img/triangular_white.png'} onClick={this.changeBackground} />
+            <img className="triangular_grey" src={'/img/triangular_grey.png'} onClick={this.changeBackground} />
+            <img className="flowers" src={'/img/flowers.png'} onClick={this.changeBackground} />
+            <img className="triangular_black" src={'/img/triangular_black.png'} onClick={this.changeBackground} />
           </div>
         </div>
       </div>
