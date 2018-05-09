@@ -1,13 +1,14 @@
 {
   "name": "chat_app",
   "version": "1.0.0",
-  "description": "",
+  "description": "React + socket.io chat app",
   "main": "server.js",
   "scripts": {
+    "start:dev-full": "concurrently \"nodemon server.js\" \"npm run start:dev --prefix client\"",
     "start": "node server.js",
-    "start:dev-full": "concurrently \"nodemon server.js\" \"npm run start:dev --prefix client\""
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
-  "author": "",
+  "author": "Ivan Jakimovski",
   "license": "ISC",
   "dependencies": {
     "concurrently": "^3.5.1",

@@ -1,6 +1,7 @@
 import socketIOClient from 'socket.io-client';
 
-const socket = socketIOClient('http://localhost:3000');
+// use 'http://localhost:3000' when in development mode
+const socket = socketIOClient('/');
 
 const socketOn = {
   updateUser: (callback) => {
