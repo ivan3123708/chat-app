@@ -11,6 +11,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
 const publicPath = path.join(__dirname, 'client', 'public');
+const port = process.env.PORT || 3000;
 
 const users = new Users();
 const rooms = new Rooms();
@@ -148,6 +149,6 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(publicPath, 'index.html'));
 });
 
-server.listen(3000, () => {
+server.listen(port, () => {
   console.log('SERVER NOW RUNNING...');
 });
