@@ -5,8 +5,11 @@
 <img src="githubImg/d.png" width="300"/>
 <img src="githubImg/g.png" width="300"/>
 <img src="githubImg/h.png" width="300"/>
+
 ## Description
 Chat application which allows user to send messages to other people. Works on desktop, tablets and smartphones.
+
+You can see demo <a href="https://ij-chat-app.herokuapp.com/">here</a>.
 ### Features:
 - Join  public group chat
 - See the list of all chat rooms & users online
