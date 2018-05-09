@@ -1,10 +1,10 @@
 # Chat App
-<span><img src="githubImg/a.png" width="300"/>&nbsp;</span>
-<span><img src="githubImg/b.png" width="300"/>&nbsp;</span>
-<span><img src="githubImg/c.png" width="300"/>&nbsp;</span>
-<span><img src="githubImg/d.png" width="300"/>&nbsp;</span>
-<span><img src="githubImg/g.png" width="300"/>&nbsp;</span>
-<span><img src="githubImg/h.png" width="300"/>&nbsp;</span>
+<span><img src="githubImg/a.png" width="280"/>&nbsp;</span>
+<span><img src="githubImg/b.png" width="280"/>&nbsp;</span>
+<span><img src="githubImg/c.png" width="280"/>&nbsp;</span>
+<span><img src="githubImg/d.png" width="280"/>&nbsp;</span>
+<span><img src="githubImg/g.png" width="280"/>&nbsp;</span>
+<span><img src="githubImg/h.png" width="280"/>&nbsp;</span>
 
 ## Description
 Chat application which allows user to send messages to other people. Works on desktop, tablets and smartphones.
