@@ -25,3 +25,5 @@ You can see demo <a href="https://ij-chat-app.herokuapp.com/">here</a>.
 - Sass
 - Webpack
 - Axios
+
+<i>Used avatars from <a href="http://www.hexatar.com/">Hexatar</a> for demonstration purposes</i>
