@@ -1,6 +1,6 @@
 import React from 'react';
 import Close from 'react-icons/lib/md/close';
-import { IncomingMessage } from 'http';
+import { sidebarClose } from '../helpers/sidebarToggle';
 
 const colors = {
   violet: '#746db4',
@@ -11,15 +11,6 @@ const colors = {
 };
 
 class SidebarRight extends React.Component {
-
-  closeSidebar = () => {
-    const sidebar = document.getElementsByClassName('sidebar-right')[0];
-
-    if (sidebar.className.match(/(?:^|\s)sidebar-right-open(?!\S)/)) {
-      sidebar.classList.remove('sidebar-right-open');
-      sidebar.classList.add('sidebar-right-closed');
-    }
-  }
 
   changeTheme = (e) => {
     const theme = e.target.className;
@@ -32,6 +23,10 @@ class SidebarRight extends React.Component {
     const chatContent = document.getElementsByClassName('chat-content')[0];
     
     chatContent.style.backgroundImage = `url('/img/${background}.png')`;
+  }
+
+  closeSidebar = () => {
+    sidebarClose('right');
   }
 
   render() {

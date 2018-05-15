@@ -8,6 +8,7 @@ import Join from 'react-icons/lib/fa/sign-in';
 import Leave from 'react-icons/lib/fa/sign-out';
 import Lock from 'react-icons/lib/md/lock';
 import { socketEmit } from '../helpers/socketEvents';
+import { sidebarClose } from '../helpers/sidebarToggle';
 
 class SidebarLeft extends React.Component {
 
@@ -46,12 +47,7 @@ class SidebarLeft extends React.Component {
   }
 
   closeSidebar = () => {
-    const sidebar = document.getElementsByClassName('sidebar-left')[0];
-
-    if (sidebar.className.match(/(?:^|\s)sidebar-left-open(?!\S)/)) {
-      sidebar.classList.remove('sidebar-left-open');
-      sidebar.classList.add('sidebar-left-closed');
-    }
+    sidebarClose('left');
   }
 
   render() {

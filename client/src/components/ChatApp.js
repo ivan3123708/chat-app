@@ -1,5 +1,6 @@
 import React from 'react';
 import { socketOn, socketEmit } from '../helpers/socketEvents';
+import { sidebarOpen } from '../helpers/sidebarToggle';
 import LoginPage from './LoginPage';
 import SidebarLeft from './SidebarLeft';
 import SidebarRight from './SidebarRight';
@@ -55,30 +56,7 @@ class ChatApp extends React.Component {
   }
 
   openSidebar = (side) => {
-    const sidebarLeft = document.getElementsByClassName('sidebar-left')[0];
-    const sidebarRight = document.getElementsByClassName('sidebar-right')[0];
-
-    if (side === 'left') {
-      if (sidebarRight.className.match(/(?:^|\s)sidebar-right-open(?!\S)/)) {
-        sidebarRight.classList.remove('sidebar-right-open');
-        sidebarRight.classList.add('sidebar-right-closed');
-      }
-
-      if (sidebarLeft.className.match(/(?:^|\s)sidebar-left-closed(?!\S)/)) {
-        sidebarLeft.classList.remove('sidebar-left-closed');
-        sidebarLeft.classList.add('sidebar-left-open');
-      }
-    } else if (side === 'right') {
-      if (sidebarLeft.className.match(/(?:^|\s)sidebar-left-open(?!\S)/)) {
-        sidebarLeft.classList.remove('sidebar-left-open');
-        sidebarLeft.classList.add('sidebar-left-closed');
-      }
-
-      if (sidebarRight.className.match(/(?:^|\s)sidebar-right-closed(?!\S)/)) {
-        sidebarRight.classList.remove('sidebar-right-closed');
-        sidebarRight.classList.add('sidebar-right-open');
-      }
-    }
+    sidebarOpen(side);
   }
 
   componentDidUpdate() {
