@@ -2,25 +2,28 @@ import React from 'react';
 import { socketEmit } from '../helpers/socketEvents';
 
 class LoginPage extends React.Component {
+  constructor() {
+    super();
 
-  state = {
-    error: null
-  }
-
-  loginUser = (e) => {
-    e.preventDefault();
-
-    const userName = e.target.elements.userName.value.trim();
-
-    if (!userName) {
-      return this.setState({ error: 'You must enter username' });
+    this.state = {
+      error: null,
     };
-    
-    socketEmit.joinUser(userName, (err) => {
-      this.setState({ error: err });
-    });
-    
-    e.target.elements.userName.value = '';
+
+    this.loginUser = (e) => {
+      e.preventDefault();
+
+      const userName = e.target.elements.userName.value.trim();
+
+      if (!userName) {
+        return this.setState({ error: 'You must enter username' });
+      }
+
+      socketEmit.joinUser(userName, (err) => {
+        this.setState({ error: err });
+      });
+
+      e.target.elements.userName.value = '';
+    };
   }
 
   render() {
@@ -36,7 +39,7 @@ class LoginPage extends React.Component {
           </form>
         </div>
       </div>
-    )
+    );
   }
 }
 

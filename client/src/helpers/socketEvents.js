@@ -1,7 +1,7 @@
 import socketIOClient from 'socket.io-client';
 
 // use 'http://localhost:3000' when in development mode
-const socket = socketIOClient('/');
+const socket = socketIOClient('http://localhost:3000');
 
 const socketOn = {
   updateUser: (callback) => {
@@ -21,17 +21,17 @@ const socketOn = {
   },
   updateRooms: (callback) => {
     socket.on('updateRooms', (rooms) => {
-      callback(rooms)
+      callback(rooms);
     });
-  }
+  },
 };
 
 const socketEmit = {
   joinUser: (userName, callback) => {
-    socket.emit('joinUser', userName, (err) => callback(err));
+    socket.emit('joinUser', userName, err => callback(err));
   },
   joinRoom: (roomName, password, callback) => {
-    socket.emit('joinRoom', { roomName, password }, (err) => callback(err));
+    socket.emit('joinRoom', { roomName, password }, err => callback(err));
   },
   leaveRoom: (roomName) => {
     socket.emit('leaveRoom', roomName);
@@ -41,7 +41,7 @@ const socketEmit = {
   },
   getAvatar: () => {
     socket.emit('getAvatar');
-  }
+  },
 };
 
 export { socketOn, socketEmit };

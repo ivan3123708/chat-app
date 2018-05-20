@@ -8,4 +8,4 @@ import './styles/themes/dark.scss';
 import './styles/themes/pink.scss';
 import './styles/themes/green.scss';
 
-ReactDOM.render(<ChatApp/>, document.getElementById('app_root'));
+ReactDOM.render(<ChatApp />, document.getElementById('app_root'));

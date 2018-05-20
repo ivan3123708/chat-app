@@ -1,29 +1,33 @@
 import React from 'react';
 import Modal from 'react-modal';
+import PropTypes from 'prop-types';
 import { socketEmit } from '../helpers/socketEvents';
 
 class CreateRoomModal extends React.Component {
+  constructor() {
+    super();
 
-  state = {
-    error: null
-  }
+    this.state = {
+      error: null,
+    };
 
-  createRoom = (e) => {
-    e.preventDefault();
+    this.createRoom = (e) => {
+      e.preventDefault();
 
-    const roomName = e.target.elements.roomName.value.trim();
-    const password = e.target.elements.password.value.trim();
+      const roomName = e.target.elements.roomName.value.trim();
+      const password = e.target.elements.password.value.trim();
 
-    if (!roomName) {
-      return this.setState({ error: 'You must enter room name' });
-    }
+      if (!roomName) {
+        return this.setState({ error: 'You must enter room name' });
+      }
 
-    socketEmit.joinRoom(roomName, password);
+      socketEmit.joinRoom(roomName, password);
 
-    e.target.elements.roomName.value = '';
-    e.target.elements.password.value = '';
+      e.target.elements.roomName.value = '';
+      e.target.elements.password.value = '';
 
-    this.props.onRequestClose();
+      this.props.onRequestClose();
+    };
   }
 
   render() {
@@ -43,8 +47,13 @@ class CreateRoomModal extends React.Component {
           <button type="submit" className="button-text">Create</button>
         </form>
       </Modal>
-    )
+    );
   }
 }
+
+CreateRoomModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onRequestClose: PropTypes.func.isRequired,
+};
 
 export default CreateRoomModal;

@@ -5,8 +5,8 @@ class Rooms {
         name: 'Home Chat',
         password: null,
         users: [],
-        messages: []
-      }
+        messages: [],
+      },
     ];
   }
 
@@ -15,16 +15,16 @@ class Rooms {
   }
 
   getRoom(roomName) {
-    return this.rooms.find((room) => room.name === roomName);
+    return this.rooms.find(room => room.name === roomName);
   }
 
   addRoom(roomName, password) {
-    if (!this.rooms.find((room) => room.name === roomName)) {
+    if (!this.rooms.find(room => room.name === roomName)) {
       this.rooms.push({
         name: roomName,
-        password: password,
+        password,
         users: [],
-        messages: []
+        messages: [],
       });
     }
   }
@@ -33,25 +33,25 @@ class Rooms {
     this.rooms = this.rooms.filter((room) => {
       if (roomName !== 'Home Chat') {
         return room.name !== roomName;
-      } else {
-        return room;
       }
+
+      return room;
     });
   }
 
   addUser(userName, roomName) {
-    const room = this.rooms.find((room) => room.name === roomName);
-    
-    if (!room.users.find((user) => user === userName)) {
+    const room = this.rooms.find(room => room.name === roomName);
+
+    if (!room.users.find(user => user === userName)) {
       room.users.push(userName);
-    };
+    }
   }
 
   removeUser(userName, roomName) {
     const room = this.getRoom(roomName);
-    
+
     if (room) {
-      room.users = room.users.filter((user) => user !== userName);
+      room.users = room.users.filter(user => user !== userName);
 
       if (!room.users.length) {
         this.removeRoom(roomName);
@@ -60,7 +60,7 @@ class Rooms {
   }
 
   addMessage(message, roomName) {
-    const room = this.rooms.find((room) => room.name === roomName);
+    const room = this.rooms.find(room => room.name === roomName);
 
     if (room.messages.length >= 50) {
       room.messages.shift();
@@ -68,6 +68,6 @@ class Rooms {
 
     room.messages.push(message);
   }
-};
+}
 
 module.exports = { Rooms };

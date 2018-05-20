@@ -12,7 +12,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.join(__dirname, 'public', 'dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   module: {
     rules: [
@@ -23,53 +23,53 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['env', 'react'],
-            plugins: ['transform-class-properties', 'transform-object-rest-spread']
-          }
-        }
+            plugins: ['transform-class-properties', 'transform-object-rest-spread'],
+          },
+        },
       },
       {
         test: /index.scss/,
         use: index.extract({
           fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader']
-        })
+          use: ['css-loader', 'sass-loader'],
+        }),
       },
       {
         test: /violet.scss/,
         use: violet.extract({
           fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader']
-        })
+          use: ['css-loader', 'sass-loader'],
+        }),
       },
       {
         test: /light.scss/,
         use: light.extract({
           fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader']
-        })
+          use: ['css-loader', 'sass-loader'],
+        }),
       },
       {
         test: /dark.scss/,
         use: dark.extract({
           fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader']
-        })
+          use: ['css-loader', 'sass-loader'],
+        }),
       },
       {
         test: /pink.scss/,
         use: pink.extract({
           fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader']
-        })
+          use: ['css-loader', 'sass-loader'],
+        }),
       },
       {
         test: /green.scss/,
         use: green.extract({
           fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader']
-        })
-      }
-    ]
+          use: ['css-loader', 'sass-loader'],
+        }),
+      },
+    ],
   },
   plugins: [
     index,
@@ -77,7 +77,7 @@ module.exports = {
     light,
     dark,
     pink,
-    green
+    green,
   ],
   devtool: 'source-map',
   devServer: {
@@ -85,7 +85,7 @@ module.exports = {
     publicPath: '/dist',
     proxy: [{
       context: ['/api/*'],
-      target: "http://localhost:3000",
-    }]
-  }
-}
+      target: 'http://localhost:3000',
+    }],
+  },
+};

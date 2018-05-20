@@ -32,6 +32,6 @@ const sidebarClose = (side) => {
     sidebar.classList.remove(`sidebar-${side}-open`);
     sidebar.classList.add(`sidebar-${side}-closed`);
   }
-}
+};
 
 export { sidebarOpen, sidebarClose };
