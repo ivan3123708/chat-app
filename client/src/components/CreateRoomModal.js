@@ -11,23 +11,25 @@ class CreateRoomModal extends React.Component {
       error: null,
     };
 
-    this.createRoom = (e) => {
-      e.preventDefault();
+    this.createRoom = this.createRoom.bind(this);
+  }
 
-      const roomName = e.target.elements.roomName.value.trim();
-      const password = e.target.elements.password.value.trim();
+  createRoom(e) {
+    e.preventDefault();
 
-      if (!roomName) {
-        return this.setState({ error: 'You must enter room name' });
-      }
+    const roomName = e.target.elements.roomName.value.trim();
+    const password = e.target.elements.password.value.trim();
 
-      socketEmit.joinRoom(roomName, password);
+    if (!roomName) {
+      return this.setState({ error: 'You must enter room name' });
+    }
 
-      e.target.elements.roomName.value = '';
-      e.target.elements.password.value = '';
+    socketEmit.joinRoom(roomName, password);
 
-      this.props.onRequestClose();
-    };
+    e.target.elements.roomName.value = '';
+    e.target.elements.password.value = '';
+
+    this.props.onRequestClose();
   }
 
   render() {

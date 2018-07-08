@@ -12,41 +12,43 @@ class AvatarModal extends React.Component {
       error: null,
     };
 
-    this.previewAvatar = (input) => {
-      if (input.files && input.files[0]) {
-        const reader = new FileReader();
+    this.uploadAvatar = this.uploadAvatar.bind(this);
+  }
 
-        reader.onload = (e) => {
-          const preview = document.getElementById('preview');
-          preview.src = e.target.result;
-        };
+  static previewAvatar(input) {
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
 
-        reader.readAsDataURL(input.files[0]);
-      }
-    };
+      reader.onload = (e) => {
+        const preview = document.getElementById('preview');
+        preview.src = e.target.result;
+      };
 
-    this.uploadAvatar = (e) => {
-      e.preventDefault();
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
 
-      const data = new FormData();
-      const inputfile = document.getElementById('inputfile');
+  uploadAvatar(e) {
+    e.preventDefault();
 
-      data.append('id', this.props.user.id);
-      data.append('avatar', inputfile.files[0]);
+    const data = new FormData();
+    const inputfile = document.getElementById('inputfile');
 
-      axios.post('/api/avatar', data, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
+    data.append('id', this.props.user.id);
+    data.append('avatar', inputfile.files[0]);
+
+    axios.post('/api/avatar', data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+      .then(() => {
+        socketEmit.getAvatar();
+        this.props.onRequestClose();
       })
-        .then(() => {
-          socketEmit.getAvatar();
-          this.props.onRequestClose();
-        })
-        .catch(() => {
-          this.setState({ error: 'Only .jpg, .png or .gif, < 5MB' });
-        });
-    };
+      .catch(() => {
+        this.setState({ error: 'Only .jpg, .png or .gif, < 5MB' });
+      });
   }
 
   render() {
@@ -60,7 +62,7 @@ class AvatarModal extends React.Component {
           <h3>Set Profile</h3>
           <p className="error">{this.state.error}</p>
           <img id="preview" src={this.props.user.avatar} alt="avatar" />
-          <input id="inputfile" name="avatar" type="file" onChange={() => this.previewAvatar(document.getElementById('inputfile'))} />
+          <input id="inputfile" name="avatar" type="file" onChange={() => AvatarModal.previewAvatar(document.getElementById('inputfile'))} />
           <button type="submit" className="button-text">Set</button>
         </form>
       </Modal>

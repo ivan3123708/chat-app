@@ -9,21 +9,23 @@ class LoginPage extends React.Component {
       error: null,
     };
 
-    this.loginUser = (e) => {
-      e.preventDefault();
+    this.loginUser = this.loginUser.bind(this);
+  }
 
-      const userName = e.target.elements.userName.value.trim();
+  loginUser(e) {
+    e.preventDefault();
 
-      if (!userName) {
-        return this.setState({ error: 'You must enter username' });
-      }
+    const userName = e.target.elements.userName.value.trim();
 
-      socketEmit.joinUser(userName, (err) => {
-        this.setState({ error: err });
-      });
+    if (!userName) {
+      return this.setState({ error: 'You must enter username' });
+    }
 
-      e.target.elements.userName.value = '';
-    };
+    socketEmit.joinUser(userName, (err) => {
+      this.setState({ error: err });
+    });
+
+    e.target.elements.userName.value = '';
   }
 
   render() {

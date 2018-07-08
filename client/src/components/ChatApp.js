@@ -21,6 +21,9 @@ class ChatApp extends React.Component {
       rooms: [],
     };
 
+    this.sendMessage = this.sendMessage.bind(this);
+    this.switchRoom = this.switchRoom.bind(this);
+
     socketOn.updateUser((user) => {
       this.setState({ user });
     });
@@ -36,26 +39,6 @@ class ChatApp extends React.Component {
     socketOn.updateRooms((rooms) => {
       this.setState({ rooms });
     });
-
-    this.sendMessage = (e) => {
-      e.preventDefault();
-
-      const text = e.target.elements.text.value.trim();
-
-      if (text) {
-        socketEmit.clientMessage(text, this.state.room);
-
-        e.target.elements.text.value = '';
-      }
-    };
-
-    this.switchRoom = (room) => {
-      this.setState({ room });
-    };
-
-    this.openSidebar = (side) => {
-      sidebarOpen(side);
-    };
   }
 
   componentDidUpdate() {
@@ -64,6 +47,26 @@ class ChatApp extends React.Component {
     if (messages) {
       messages.scrollTop = messages.scrollHeight;
     }
+  }
+
+  static openSidebar(side) {
+    sidebarOpen(side);
+  }
+
+  sendMessage(e) {
+    e.preventDefault();
+
+    const text = e.target.elements.text.value.trim();
+
+    if (text) {
+      socketEmit.clientMessage(text, this.state.room);
+
+      e.target.elements.text.value = '';
+    }
+  }
+
+  switchRoom(room) {
+    this.setState({ room });
   }
 
   render() {
@@ -84,7 +87,7 @@ class ChatApp extends React.Component {
         <div className="chat-content">
           <div className="topbar">
             <div className="more">
-              <button onClick={() => this.openSidebar('left')} title="Show public chats & online users">
+              <button onClick={() => ChatApp.openSidebar('left')} title="Show public chats & online users">
                 <More className="icon" size="22px" />
               </button>
             </div>
@@ -93,7 +96,7 @@ class ChatApp extends React.Component {
               <p className="room-users">{this.state.room && (currentRoom.users.join(', ').length > 30 ? `${currentRoom.users.join(', ').slice(0, 30)}...` : currentRoom.users.join(', '))}</p>
             </div>
             <div className="themes">
-              <button onClick={() => this.openSidebar('right')} title="Change theme & background">
+              <button onClick={() => ChatApp.openSidebar('right')} title="Change theme & background">
                 <Palette className="icon" size="24px" />
               </button>
             </div>

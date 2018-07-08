@@ -11,32 +11,28 @@ const colors = {
 };
 
 class SidebarRight extends React.Component {
-  constructor() {
-    super();
+  static changeTheme(e) {
+    const theme = e.target.className;
 
-    this.changeTheme = (e) => {
-      const theme = e.target.className;
+    document.getElementById('theme').href = `/dist/${theme}.css`;
+  }
 
-      document.getElementById('theme').href = `/dist/${theme}.css`;
-    };
+  static changeBackground(e) {
+    const background = e.target.className;
+    const chatContent = document.getElementsByClassName('chat-content')[0];
 
-    this.changeBackground = (e) => {
-      const background = e.target.className;
-      const chatContent = document.getElementsByClassName('chat-content')[0];
+    chatContent.style.backgroundImage = `url('/img/${background}.png')`;
+  }
 
-      chatContent.style.backgroundImage = `url('/img/${background}.png')`;
-    };
-
-    this.closeSidebar = () => {
-      sidebarClose('right');
-    };
+  static closeSidebar() {
+    sidebarClose('right');
   }
 
   render() {
     return (
       <div className="sidebar-right sidebar-right-closed">
         <div className="close">
-          <button onClick={this.closeSidebar}>
+          <button onClick={SidebarRight.closeSidebar}>
             <Close className="icon" size="24px" />
           </button>
         </div>
@@ -48,7 +44,7 @@ class SidebarRight extends React.Component {
             {Object.keys(colors).map(color => (<div
               className={color}
               style={{ background: colors[color] }}
-              onClick={this.changeTheme}
+              onClick={SidebarRight.changeTheme}
             />))}
           </div>
         </div>
@@ -57,11 +53,11 @@ class SidebarRight extends React.Component {
             <p>Choose Background</p>
           </div>
           <div className="images">
-            <img className="sun" src="/img/sun.png" alt="sun" onClick={this.changeBackground} />
-            <img className="triangular_white" src="/img/triangular_white.png" alt="triangular-white" onClick={this.changeBackground} />
-            <img className="triangular_grey" src="/img/triangular_grey.png" alt="triangular-grey" onClick={this.changeBackground} />
-            <img className="flowers" src="/img/flowers.png" alt="flowers" onClick={this.changeBackground} />
-            <img className="triangular_black" src="/img/triangular_black.png" alt="triangular-black" onClick={this.changeBackground} />
+            <img className="sun" src="/img/sun.png" alt="sun" onClick={SidebarRight.changeBackground} />
+            <img className="triangular_white" src="/img/triangular_white.png" alt="triangular-white" onClick={SidebarRight.changeBackground} />
+            <img className="triangular_grey" src="/img/triangular_grey.png" alt="triangular-grey" onClick={SidebarRight.changeBackground} />
+            <img className="flowers" src="/img/flowers.png" alt="flowers" onClick={SidebarRight.changeBackground} />
+            <img className="triangular_black" src="/img/triangular_black.png" alt="triangular-black" onClick={SidebarRight.changeBackground} />
           </div>
         </div>
       </div>

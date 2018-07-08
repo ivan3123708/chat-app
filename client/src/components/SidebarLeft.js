@@ -24,34 +24,38 @@ class SidebarLeft extends React.Component {
       },
     };
 
-    this.toggleAvatarModal = () => {
-      this.setState(prevState => ({ avatarModalOpen: !prevState.avatarModalOpen }));
-    };
+    this.toggleAvatarModal = this.toggleAvatarModal.bind(this);
+    this.toggleCreateRoomModal = this.toggleCreateRoomModal.bind(this);
+    this.togglePasswordModal = this.togglePasswordModal.bind(this);
+  }
 
-    this.toggleCreateRoomModal = () => {
-      this.setState(prevState => ({ createRoomModalOpen: !prevState.createRoomModalOpen }));
-    };
+  static joinRoom(data) {
+    socketEmit.joinRoom(data.roomName, data.password || null);
+  }
 
-    this.togglePasswordModal = (roomName) => {
-      this.setState(prevState => ({
-        passwordModal: {
-          open: !prevState.passwordModal.open,
-          roomName,
-        },
-      }));
-    };
+  static leaveRoom(roomName) {
+    socketEmit.leaveRoom(roomName);
+  }
 
-    this.joinRoom = (data) => {
-      socketEmit.joinRoom(data.roomName, data.password || null);
-    };
+  static closeSidebar() {
+    sidebarClose('left');
+  }
 
-    this.leaveRoom = (roomName) => {
-      socketEmit.leaveRoom(roomName);
-    };
+  toggleAvatarModal() {
+    this.setState(prevState => ({ avatarModalOpen: !prevState.avatarModalOpen }));
+  }
 
-    this.closeSidebar = () => {
-      sidebarClose('left');
-    };
+  toggleCreateRoomModal() {
+    this.setState(prevState => ({ createRoomModalOpen: !prevState.createRoomModalOpen }));
+  }
+
+  togglePasswordModal(roomName) {
+    this.setState(prevState => ({
+      passwordModal: {
+        open: !prevState.passwordModal.open,
+        roomName,
+      },
+    }));
   }
 
   render() {
@@ -68,7 +72,7 @@ class SidebarLeft extends React.Component {
             </div>
           </div>
           <div className="close">
-            <button onClick={this.closeSidebar}>
+            <button onClick={SidebarLeft.closeSidebar}>
               <Close className="icon" size="24px" />
             </button>
           </div>
@@ -89,11 +93,11 @@ class SidebarLeft extends React.Component {
                   <p className="secondary">{room.users.join(', ').length > 25 ? `${room.users.join(', ').slice(0, 25)}...` : room.users.join(', ')}</p>
                 </div>
                 {room.name !== 'Home Chat' && !room.password && (!this.props.user.rooms.includes(room.name) ?
-                  <button onClick={() => this.joinRoom({ roomName: room.name })} title="Join this room">
+                  <button onClick={() => SidebarLeft.joinRoom({ roomName: room.name })} title="Join this room">
                     <Join className="icon" size="20px" />
                   </button>
                   :
-                  <button onClick={() => this.leaveRoom(room.name)} title="Leave this room">
+                  <button onClick={() => SidebarLeft.leaveRoom(room.name)} title="Leave this room">
                     <Leave className="icon" size="20px" />
                   </button>)
                 }
@@ -102,7 +106,7 @@ class SidebarLeft extends React.Component {
                     <Lock className="icon" size="20px" />
                   </button>
                   :
-                  <button onClick={() => this.leaveRoom(room.name)} title="Leave this room">
+                  <button onClick={() => SidebarLeft.leaveRoom(room.name)} title="Leave this room">
                     <Leave className="icon" size="20px" />
                   </button>)
                 }

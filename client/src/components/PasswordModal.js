@@ -11,25 +11,27 @@ class PasswordModal extends React.Component {
       error: null,
     };
 
-    this.submitPassword = (e) => {
-      e.preventDefault();
+    this.submitPassword = this.submitPassword.bind(this);
+  }
 
-      const password = e.target.elements.password.value.trim();
+  submitPassword(e) {
+    e.preventDefault();
 
-      if (!password) {
-        return this.setState({ error: 'You must enter password' });
+    const password = e.target.elements.password.value.trim();
+
+    if (!password) {
+      return this.setState({ error: 'You must enter password' });
+    }
+
+    socketEmit.joinRoom(this.props.roomName, password, (err) => {
+      this.setState({ error: err });
+
+      if (!this.state.error) {
+        this.props.onRequestClose();
       }
+    });
 
-      socketEmit.joinRoom(this.props.roomName, password, (err) => {
-        this.setState({ error: err });
-
-        if (!this.state.error) {
-          this.props.onRequestClose();
-        }
-      });
-
-      e.target.elements.password.value = '';
-    };
+    e.target.elements.password.value = '';
   }
 
   render() {
