@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Message /> should render Message correctly 1`] = `
+<div
+  className="message"
+>
+  <img
+    alt="sender"
+    src="/img/avatars/1.png"
+  />
+  <div
+    className="message-content"
+  >
+    <p
+      className="sender"
+    >
+      John
+    </p>
+    <p
+      className="text"
+    >
+      Hello world!
+    </p>
+    <p
+      className="time"
+    >
+      20:30
+    </p>
+  </div>
+</div>
+`;
+
+exports[`<Message /> should render consecutive Message correctly 1`] = `
+<div
+  className="message"
+>
+  <div
+    className="message-content-consecutive"
+  >
+    <p
+      className="text"
+    >
+      How are you?
+    </p>
+    <p
+      className="time"
+    >
+      20:31
+    </p>
+  </div>
+</div>
+`;
