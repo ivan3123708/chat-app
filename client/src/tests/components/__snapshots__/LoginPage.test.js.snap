@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LoginPage /> renders LoginPage correctly 1`] = `
+<div
+  className="login-page"
+>
+  <div
+    className="login-modal"
+  >
+    <form
+      onSubmit={[Function]}
+    >
+      <h3>
+        Join Chat
+      </h3>
+      <p
+        className="error"
+      />
+      <p>
+        Username
+      </p>
+      <input
+        autoComplete="off"
+        autoFocus={true}
+        maxLength="20"
+        name="userName"
+        type="text"
+      />
+      <button
+        className="button-text"
+        type="submit"
+      >
+        Join
+      </button>
+    </form>
+  </div>
+</div>
+`;
