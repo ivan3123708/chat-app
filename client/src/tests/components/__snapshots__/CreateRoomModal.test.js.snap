@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CreateRoomModal renders CreateRoomModal correctly 1`] = `
+<Modal
+  ariaHideApp={true}
+  bodyOpenClassName="ReactModal__Body--open"
+  className="create-room-modal"
+  closeTimeoutMS={0}
+  isOpen={true}
+  onRequestClose={[Function]}
+  parentSelector={[Function]}
+  portalClassName="ReactModalPortal"
+  shouldCloseOnEsc={true}
+  shouldCloseOnOverlayClick={true}
+  shouldFocusAfterRender={true}
+  shouldReturnFocusAfterClose={true}
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <h3>
+      Create new room
+    </h3>
+    <p
+      className="error"
+    />
+    <p>
+      Room name
+    </p>
+    <input
+      autoComplete="off"
+      autoFocus={true}
+      maxLength="20"
+      name="roomName"
+      type="text"
+    />
+    <p>
+      Password (optional)
+    </p>
+    <input
+      name="password"
+      type="password"
+    />
+    <button
+      className="button-text"
+      type="submit"
+    >
+      Create
+    </button>
+  </form>
+</Modal>
+`;

@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AvatarModal /> renders AvatarModal correctly 1`] = `
+<Modal
+  ariaHideApp={true}
+  bodyOpenClassName="ReactModal__Body--open"
+  className="avatar-modal"
+  closeTimeoutMS={0}
+  isOpen={true}
+  onRequestClose={[Function]}
+  parentSelector={[Function]}
+  portalClassName="ReactModalPortal"
+  shouldCloseOnEsc={true}
+  shouldCloseOnOverlayClick={true}
+  shouldFocusAfterRender={true}
+  shouldReturnFocusAfterClose={true}
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <h3>
+      Set Profile
+    </h3>
+    <p
+      className="error"
+    />
+    <img
+      alt="avatar"
+      id="preview"
+      src="/img/avatars/1.png"
+    />
+    <input
+      id="inputfile"
+      name="avatar"
+      onChange={[Function]}
+      type="file"
+    />
+    <button
+      className="button-text"
+      type="submit"
+    >
+      Set
+    </button>
+  </form>
+</Modal>
+`;
