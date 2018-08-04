@@ -1,11 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import AvatarModal from '../../components/AvatarModal';
-import avatar from '../data/avatar';
+import user from '../data/user';
 
 describe('<AvatarModal />', () => {
   it('renders AvatarModal correctly', () => {
-    const wrapper = shallow(<AvatarModal isOpen={avatar.isOpen} onRequestClose={avatar.onRequestClose} user={avatar.user} />);
+    const wrapper = shallow(<AvatarModal isOpen={true} onRequestClose={() => { }} user={user} />);
 
     expect(wrapper).toMatchSnapshot();
   });

@@ -1,0 +1,125 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SidebarRight /> renders SidebarRight correctly 1`] = `
+<div
+  className="sidebar-right sidebar-right-closed"
+>
+  <div
+    className="close"
+  >
+    <button
+      onClick={[Function]}
+    >
+      <MdClose
+        className="icon"
+        size="24px"
+      />
+    </button>
+  </div>
+  <div
+    className="themes"
+  >
+    <div
+      className="panel"
+    >
+      <p>
+        Choose Theme
+      </p>
+    </div>
+    <div
+      className="colors"
+    >
+      <div
+        className="violet"
+        onClick={[Function]}
+        style={
+          Object {
+            "background": "#746db4",
+          }
+        }
+      />
+      <div
+        className="light"
+        onClick={[Function]}
+        style={
+          Object {
+            "background": "#dedef7",
+          }
+        }
+      />
+      <div
+        className="dark"
+        onClick={[Function]}
+        style={
+          Object {
+            "background": "#263238",
+          }
+        }
+      />
+      <div
+        className="pink"
+        onClick={[Function]}
+        style={
+          Object {
+            "background": "#ff95c7",
+          }
+        }
+      />
+      <div
+        className="green"
+        onClick={[Function]}
+        style={
+          Object {
+            "background": "#92db25",
+          }
+        }
+      />
+    </div>
+  </div>
+  <div
+    className="backgrounds"
+  >
+    <div
+      className="panel"
+    >
+      <p>
+        Choose Background
+      </p>
+    </div>
+    <div
+      className="images"
+    >
+      <img
+        alt="sun"
+        className="sun"
+        onClick={[Function]}
+        src="/img/sun.png"
+      />
+      <img
+        alt="triangular-white"
+        className="triangular_white"
+        onClick={[Function]}
+        src="/img/triangular_white.png"
+      />
+      <img
+        alt="triangular-grey"
+        className="triangular_grey"
+        onClick={[Function]}
+        src="/img/triangular_grey.png"
+      />
+      <img
+        alt="flowers"
+        className="flowers"
+        onClick={[Function]}
+        src="/img/flowers.png"
+      />
+      <img
+        alt="triangular-black"
+        className="triangular_black"
+        onClick={[Function]}
+        src="/img/triangular_black.png"
+      />
+    </div>
+  </div>
+</div>
+`;

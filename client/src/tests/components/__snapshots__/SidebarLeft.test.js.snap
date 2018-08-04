@@ -1,0 +1,150 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SidebarLeft /> renders SidebarLeft correctly 1`] = `
+<div
+  className="sidebar-left sidebar-left-closed"
+>
+  <div
+    className="profile"
+  >
+    <div
+      className="left"
+    >
+      <div>
+        <img
+          alt="avatar"
+          src="/img/avatars/1.png"
+        />
+      </div>
+      <div>
+        <p>
+          John
+        </p>
+        <button
+          className="edit button-text"
+          onClick={[Function]}
+          title="Edit profile"
+        >
+          Edit
+        </button>
+      </div>
+    </div>
+    <div
+      className="close"
+    >
+      <button
+        onClick={[Function]}
+      >
+        <MdClose
+          className="icon"
+          size="24px"
+        />
+      </button>
+    </div>
+  </div>
+  <div
+    className="public-chats"
+  >
+    <div
+      className="panel"
+    >
+      <p>
+        Public Chats
+      </p>
+      <button
+        onClick={[Function]}
+        title="Create new room"
+      >
+        <MdAddBox
+          className="icon"
+          size="20px"
+        />
+      </button>
+    </div>
+    <div
+      className="public-chats-list"
+    >
+      <div
+        className="list"
+      >
+        <img
+          alt="chat-room"
+          src="/img/home_chat.png"
+        />
+        <div>
+          <p
+            className="primary"
+            onClick={[Function]}
+            title="Switch to this room"
+          >
+            Home Chat
+          </p>
+          <p
+            className="secondary"
+          >
+            John
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="users"
+  >
+    <div
+      className="panel"
+    >
+      <p>
+        Users Online
+      </p>
+    </div>
+    <div
+      className="users-list"
+    >
+      <div
+        className="list"
+      >
+        <img
+          alt="user-avatar"
+          src="/img/avatars/1.png"
+        />
+        <div>
+          <p
+            className="primary"
+          >
+            John
+          </p>
+          <p
+            className="secondary"
+          >
+            Home Chat
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <AvatarModal
+    isOpen={false}
+    onRequestClose={[Function]}
+    user={
+      Object {
+        "avatar": "/img/avatars/1.png",
+        "id": "123",
+        "name": "John",
+        "rooms": Array [
+          "Home Chat",
+        ],
+      }
+    }
+  />
+  <CreateRoomModal
+    isOpen={false}
+    onRequestClose={[Function]}
+  />
+  <PasswordModal
+    isOpen={false}
+    onRequestClose={[Function]}
+    roomName={null}
+  />
+</div>
+`;
