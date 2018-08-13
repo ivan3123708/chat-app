@@ -8,5 +8,6 @@ describe('<AvatarModal />', () => {
     const wrapper = shallow(<AvatarModal isOpen={true} onRequestClose={() => { }} user={user} />);
 
     expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find('#preview').prop('src')).toEqual(user.avatar);
   });
 });

@@ -13,11 +13,14 @@ exports[`<SidebarLeft /> renders SidebarLeft correctly 1`] = `
       <div>
         <img
           alt="avatar"
+          id="avatar"
           src="/img/avatars/1.png"
         />
       </div>
       <div>
-        <p>
+        <p
+          id="user"
+        >
           John
         </p>
         <button

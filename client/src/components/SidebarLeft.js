@@ -64,10 +64,10 @@ class SidebarLeft extends React.Component {
         <div className="profile">
           <div className="left">
             <div>
-              <img src={this.props.user.avatar} alt="avatar" />
+              <img id="avatar" src={this.props.user.avatar} alt="avatar" />
             </div>
             <div>
-              <p>{this.props.user && this.props.user.name}</p>
+              <p id="user">{this.props.user && this.props.user.name}</p>
               <button className="edit button-text" title="Edit profile" onClick={this.toggleAvatarModal}>Edit</button>
             </div>
           </div>

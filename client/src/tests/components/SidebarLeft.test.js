@@ -9,5 +9,8 @@ describe('<SidebarLeft />', () => {
     const wrapper = shallow(<SidebarLeft user={user} users={[user]} rooms={rooms} switchRoom={() => { }} />);
 
     expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find('#avatar').prop('src')).toEqual(user.avatar);
+    expect(wrapper.find('#user').text()).toEqual(user.name);
+    expect(wrapper.find('.public-chats-list').children()).toHaveLength(rooms.length);
   });
 });

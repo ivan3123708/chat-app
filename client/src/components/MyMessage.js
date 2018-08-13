@@ -10,7 +10,7 @@ const MyMessage = ({ message }) => {
           <p className="text">{message.text}</p>
           <p className="time">{message.time}</p>
         </div>
-        <img src={message.sender.avatar} alt="sender" />
+        <img id="avatar" src={message.sender.avatar} alt="sender" />
       </div>
     );
   }

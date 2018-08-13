@@ -25,6 +25,7 @@ exports[`<MyMessage /> should render MyMessage correctly 1`] = `
   </div>
   <img
     alt="sender"
+    id="avatar"
     src="/img/avatars/1.png"
   />
 </div>

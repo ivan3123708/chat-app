@@ -5,7 +5,7 @@ const Message = ({ message }) => {
   if (!message.consecutive) {
     return (
       <div className="message">
-        <img src={message.sender.avatar} alt="sender" />
+        <img id="avatar" src={message.sender.avatar} alt="sender" />
         <div className="message-content">
           <p className="sender">{message.sender.name}</p>
           <p className="text">{message.text}</p>
