@@ -1,19 +1,19 @@
 @import './theme.scss';
 
 @include theme(
-  #746db4,    // $primary
-  #6c65ace0,  // $primary-transparent
-  #9087e0,    // $primary-light
-  #fff,       // $secondary
-  #c5c5c5,    // $input-outline
-  #fff,       // $icon
-  #746db4,    // $send-icon
-  #ffd752,    // $error
-  #c0e2e7,    // $my-message
-  #ffffff,    // $message
-  #746db4,    // $sender
-  #000,       // $message-text
-  gray,       // $message-time
-  #b0abcf,    // $scroll-track
-  #7068b4     // $scroll-thumb
+  #746db4,            // $primary
+  unquote('#6c65ace0'), // $primary-transparent
+  #9087e0,            // $primary-light
+  #fff,               // $secondary
+  #c5c5c5,            // $input-outline
+  #fff,               // $icon
+  #746db4,            // $send-icon
+  #ffd752,            // $error
+  #c0e2e7,            // $my-message
+  #ffffff,            // $message
+  #746db4,            // $sender
+  #000,               // $message-text
+  gray,               // $message-time
+  #b0abcf,            // $scroll-track
+  #7068b4             // $scroll-thumb
 )

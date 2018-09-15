@@ -31,42 +31,42 @@ module.exports = {
         test: /index.scss/,
         use: index.extract({
           fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader'],
+          use: ['css-loader', 'postcss-loader', 'sass-loader'],
         }),
       },
       {
         test: /violet.scss/,
         use: violet.extract({
           fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader'],
+          use: ['css-loader', 'postcss-loader', 'sass-loader'],
         }),
       },
       {
         test: /light.scss/,
         use: light.extract({
           fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader'],
+          use: ['css-loader', 'postcss-loader', 'sass-loader'],
         }),
       },
       {
         test: /dark.scss/,
         use: dark.extract({
           fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader'],
+          use: ['css-loader', 'postcss-loader', 'sass-loader'],
         }),
       },
       {
         test: /pink.scss/,
         use: pink.extract({
           fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader'],
+          use: ['css-loader', 'postcss-loader', 'sass-loader'],
         }),
       },
       {
         test: /green.scss/,
         use: green.extract({
           fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader'],
+          use: ['css-loader', 'postcss-loader', 'sass-loader'],
         }),
       },
     ],
