@@ -27,4 +27,6 @@ You can see demo <a href="https://ij-chat-app.herokuapp.com/">here</a>.
 - Axios
 - Jest/Enzyme
 
+
+<i>Logo design by <a href="https://github.com/chimzycash">chimzycash</a><br/></i>
 <i>Used avatars from <a href="http://www.hexatar.com/">Hexatar</a> for demonstration purposes</i>
