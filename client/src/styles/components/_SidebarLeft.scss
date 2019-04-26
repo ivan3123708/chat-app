@@ -6,6 +6,16 @@
 	-moz-transition: all .5s ease;
   transition: all .5s ease;
 
+  .logo {
+    width: 300px;
+    height: 55px;
+    text-align: center;
+
+    #logo {
+      margin-top: 8px;
+    }
+  }
+
   .profile {
     display: flex;
     justify-content: space-between;

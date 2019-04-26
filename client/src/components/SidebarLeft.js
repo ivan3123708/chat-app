@@ -61,6 +61,9 @@ class SidebarLeft extends React.Component {
   render() {
     return (
       <div className="sidebar-left sidebar-left-closed">
+        <div className="logo">
+          <img id="logo" src="/img/logos/logo_violet.jpg" alt="logo" />
+        </div>
         <div className="profile">
           <div className="left">
             <div>
@@ -87,7 +90,7 @@ class SidebarLeft extends React.Component {
           <div className="public-chats-list">
             {this.props.rooms.map(room => (
               <div className="list">
-                <img src={room.name === 'Home Chat' ? '/img/home_chat.png' : '/img/public_chat.png'} alt="chat-room" />
+                <img src={room.name === 'Home Chat' ? '/img/icons/home_chat.png' : '/img/icons/public_chat.png'} alt="chat-room" />
                 <div>
                   <p className="primary" onClick={() => this.props.user.rooms.includes(room.name) && this.props.switchRoom(room.name)} title="Switch to this room">{room.name}</p>
                   <p className="secondary">{room.users.join(', ').length > 25 ? `${room.users.join(', ').slice(0, 25)}...` : room.users.join(', ')}</p>

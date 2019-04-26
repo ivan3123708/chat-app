@@ -1,8 +1,14 @@
 .login-page {
   min-height: 100vh;
   margin-top: -1px;
-  background-image: url('/img/sun.png');
+  background-image: url('/img/backgrounds/sun.png');
   border-top: 1px solid transparent;
+  text-align: center;
+
+  .login-logo {
+    width: 350px;
+    margin-top: 50px;
+  }
 
   .login-modal {
     @include modal;

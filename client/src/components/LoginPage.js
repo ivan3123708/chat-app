@@ -31,6 +31,7 @@ class LoginPage extends React.Component {
   render() {
     return (
       <div className="login-page">
+        <img className="login-logo" src="/img/logos/logo_login.png" alt="logo" />
         <div className="login-modal">
           <form onSubmit={this.loginUser}>
             <h3>Join Chat</h3>
