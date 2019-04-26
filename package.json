@@ -6,7 +6,7 @@
   "scripts": {
     "start:dev-full": "concurrently \"nodemon server.js\" \"npm run start:dev --prefix client\"",
     "start": "node server.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
   },
   "author": "Ivan Jakimovski",
   "license": "ISC",
